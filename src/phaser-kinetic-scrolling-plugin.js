@@ -122,11 +122,11 @@
 
     Phaser.Plugin.KineticScrolling.prototype.stop = function () {
 
-        this.game.input.onDown.add(this.beginMove, this);
+        this.game.input.onDown.remove(this.beginMove, this);
 
         this.game.input.deleteMoveCallback(this.callbackID);
 
-        this.game.input.onUp.add(this.endMove, this);
+        this.game.input.onUp.remove(this.endMove, this);
 
     };
 
