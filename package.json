@@ -1,22 +1,22 @@
 {
-  "name": "phaser-kinect-scrolling-plugin",
+  "name": "phaser-kinetic-scrolling-plugin",
   "version": "0.0.1",
   "author": "Juan David Nicholls Cardona <jdnichollsc@hotmail.com>",
-  "description": "Kinect Scrolling plugin for Phaser.js",
-  "main": "dist/phaser-kinect-scrolling-plugin.min.js",
+  "description": "Kinetic Scrolling plugin for Phaser.js",
+  "main": "dist/phaser-kinetic-scrolling-plugin.min.js",
   "keywords": [
     "phaser",
     "scroll",
     "camera",
-    "kinect"
+    "kinetic"
   ],
-  "homepage": "http://jdnichollsc.github.io/Phaser-Kinect-Scrolling/",  
+  "homepage": "http://jdnichollsc.github.io/Phaser-Kinetic-Scrolling/",  
   "repository": {
     "type": "git",
-    "url": "https://github.com/jdnichollsc/Phaser-Kinect-Scrolling.git"
+    "url": "https://github.com/jdnichollsc/Phaser-Kinetic-Scrolling.git"
   },
   "bugs": {
-    "url": "https://github.com/jdnichollsc/Phaser-Kinect-Scrolling.git/issues"
+    "url": "https://github.com/jdnichollsc/Phaser-Kinetic-Scrolling.git/issues"
   },
   "license": "MIT",
   "devDependencies": {

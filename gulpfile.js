@@ -11,7 +11,7 @@ gulp.task('default', ['javascript']);
 
 gulp.task('javascript', function() {
     return gulp.src(paths.javascript)
-        .pipe(concat("phaser-kinect-scrolling-plugin.js"))
+        .pipe(concat("phaser-kinetic-scrolling-plugin.js"))
         .pipe(gulp.dest("./dist/"))
         .pipe(rename({
             extname: ".min.js"

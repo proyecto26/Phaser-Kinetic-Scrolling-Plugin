@@ -8,7 +8,7 @@ var kinematicGame = new Phaser.Game(898, 430, Phaser.AUTO, 'kinematicGame', {
         this.scale.setScreenSize(true);
 
         //Load the plugin
-        this.game.kinectScrolling = this.game.plugins.add(Phaser.Plugin.KinectScrolling);
+        this.game.kineticScrolling = this.game.plugins.add(Phaser.Plugin.KineticScrolling);
     },
     preload: function () {
         this.game.load.image('mobile', mobileURI);
@@ -17,7 +17,7 @@ var kinematicGame = new Phaser.Game(898, 430, Phaser.AUTO, 'kinematicGame', {
     create: function () {
 
         //Starts the plugin
-        this.game.kinectScrolling.start();
+        this.game.kineticScrolling.start();
 
         this.rectangles = [];
 
