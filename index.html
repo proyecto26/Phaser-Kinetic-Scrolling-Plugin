@@ -1,65 +1,67 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
 
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+                    <!--[if lt IE 9]>
+                            <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+                            <![endif]-->
+        <title>Phaser Kinect Scrolling Plugin by jdnichollsc</title>
+    </head>
 
-    <title>Phaser Kinect Scrolling Plugin by jdnichollsc</title>
-  </head>
+    <body>
+        <header>
+            <div class="inner">
+                <h1>Phaser Kinect Scrolling Plugin</h1>
+                <h2>Kinect Scrolling plugin for Canvas using Phaser Framework</h2>
+                <a href="https://github.com/jdnichollsc/Phaser-Kinect-Scrolling" class="button"><small>View project on</small> GitHub</a>
+            </div>
+        </header>
 
-  <body>
-    <header>
-      <div class="inner">
-        <h1>Phaser Kinect Scrolling Plugin</h1>
-        <h2>Kinect Scrolling plugin for Canvas using Phaser Framework</h2>
-        <a href="https://github.com/jdnichollsc/Phaser-Kinect-Scrolling-Plugin" class="button"><small>View project on</small> GitHub</a>
-      </div>
-    </header>
+        <div id="content-wrapper">
+            <div class="inner clearfix">
+                <section id="main-content">
 
-    <div id="content-wrapper">
-      <div class="inner clearfix">
-        <section id="main-content">
-          <h1>
-<a id="kinect-scrolling-plugin-for-phaser-framework" class="anchor" href="#kinect-scrolling-plugin-for-phaser-framework" aria-hidden="true"><span class="octicon octicon-link"></span></a>Kinect Scrolling Plugin for Phaser Framework</h1>
+                    <div id="kinematicGame" style="max-width: 100%;height: 350px;position: relative;"></div>
 
-<p>I wanted to simulate scrolling horizontal in my games to display levels for example or a section of authors using only the canvas element in HTML5, but I could not find a good solution... so I decided to create my own plugin to Phaser Framework :D</p>
+                    <h1>
+                        <a id="kinect-scrolling-plugin-for-phaser-framework" class="anchor" href="#kinect-scrolling-plugin-for-phaser-framework" aria-hidden="true"><span class="octicon octicon-link"></span></a>Kinect Scrolling Plugin for Phaser Framework</h1>
 
-<p>//Kinect scrolling based on <a href="http://ariya.ofilabs.com/2013/11/javascript-kinetic-scrolling-part-2.html">http://ariya.ofilabs.com/2013/11/javascript-kinetic-scrolling-part-2.html</a></p>
+                    <p>I wanted to simulate scrolling horizontal in my games to display levels for example or a section of authors using only the canvas element in HTML5, but I could not find a good solution... so I decided to create my own plugin to Phaser Framework :D</p>
 
-<h2>
-<a id="load-the-plugin" class="anchor" href="#load-the-plugin" aria-hidden="true"><span class="octicon octicon-link"></span></a>Load the Plugin</h2>
+                    <p>//Kinect scrolling based on <a href="http://ariya.ofilabs.com/2013/11/javascript-kinetic-scrolling-part-2.html">http://ariya.ofilabs.com/2013/11/javascript-kinetic-scrolling-part-2.html</a></p>
 
-<div class="highlight highlight-javascript"><pre><span class="pl-v">this</span>.game.kinectScrolling <span class="pl-k">=</span> <span class="pl-v">this</span>.game.<span class="pl-c1">plugins</span>.<span class="pl-c1">add</span>(Phaser.<span class="pl-c1">Plugin</span>.KinectScrolling);</pre></div>
+                    <h2>
+                        <a id="load-the-plugin" class="anchor" href="#load-the-plugin" aria-hidden="true"><span class="octicon octicon-link"></span></a>Load the Plugin</h2>
 
-<h2>
-<a id="disable-the-kinematic-motion---i-dont-know-why-but-it-is-possible" class="anchor" href="#disable-the-kinematic-motion---i-dont-know-why-but-it-is-possible" aria-hidden="true"><span class="octicon octicon-link"></span></a>Disable the kinematic motion - <em><em>I don't know why but it is possible</em></em>
-</h2>
+                    <div class="highlight highlight-javascript"><pre><span class="pl-v">this</span>.game.kinectScrolling <span class="pl-k">=</span> <span class="pl-v">this</span>.game.<span class="pl-c1">plugins</span>.<span class="pl-c1">add</span>(Phaser.<span class="pl-c1">Plugin</span>.KinectScrolling);</pre></div>
 
-<div class="highlight highlight-javascript"><pre><span class="pl-v">this</span>.game.kinectScrolling.init(<span class="pl-c1">false</span>);</pre></div>
+                    <h2>
+                        <a id="disable-the-kinematic-motion---i-dont-know-why-but-it-is-possible" class="anchor" href="#disable-the-kinematic-motion---i-dont-know-why-but-it-is-possible" aria-hidden="true"><span class="octicon octicon-link"></span></a>Disable the kinematic motion - <em><em>I don't know why but it is possible</em></em>
+                    </h2>
 
-<h2>
-<a id="start-the-plugin" class="anchor" href="#start-the-plugin" aria-hidden="true"><span class="octicon octicon-link"></span></a>Start the Plugin</h2>
+                    <div class="highlight highlight-javascript"><pre><span class="pl-v">this</span>.game.kinectScrolling.init(<span class="pl-c1">false</span>);</pre></div>
 
-<div class="highlight highlight-javascript"><pre><span class="pl-v">this</span>.game.kinectScrolling.<span class="pl-c1">start</span>();</pre></div>
+                    <h2>
+                        <a id="start-the-plugin" class="anchor" href="#start-the-plugin" aria-hidden="true"><span class="octicon octicon-link"></span></a>Start the Plugin</h2>
 
-<h2>
-<a id="stop-the-plugin" class="anchor" href="#stop-the-plugin" aria-hidden="true"><span class="octicon octicon-link"></span></a>Stop the Plugin</h2>
+                    <div class="highlight highlight-javascript"><pre><span class="pl-v">this</span>.game.kinectScrolling.<span class="pl-c1">start</span>();</pre></div>
 
-<div class="highlight highlight-javascript"><pre><span class="pl-v">this</span>.game.kinectScrolling.<span class="pl-c1">stop</span>();</pre></div>
+                    <h2>
+                        <a id="stop-the-plugin" class="anchor" href="#stop-the-plugin" aria-hidden="true"><span class="octicon octicon-link"></span></a>Stop the Plugin</h2>
 
-<h2>
-<a id="complete-example" class="anchor" href="#complete-example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Complete Example</h2>
+                    <div class="highlight highlight-javascript"><pre><span class="pl-v">this</span>.game.kinectScrolling.<span class="pl-c1">stop</span>();</pre></div>
 
-<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> game <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Phaser.Game</span>(<span class="pl-c1">1024</span>, <span class="pl-c1">768</span>, Phaser.AUTO, <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>, {
+                    <h2>
+                        <a id="complete-example" class="anchor" href="#complete-example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Complete Example</h2>
+
+                    <div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> game <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Phaser.Game</span>(<span class="pl-c1">1024</span>, <span class="pl-c1">768</span>, Phaser.AUTO, <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>, {
     <span class="pl-en">init</span><span class="pl-k">:</span> <span class="pl-k">function</span> () {
 
         <span class="pl-c">//Load the plugin</span>
@@ -94,29 +96,42 @@
     }
 });</pre></div>
 
-<h1>
-<a id="happy-scrolling" class="anchor" href="#happy-scrolling" aria-hidden="true"><span class="octicon octicon-link"></span></a>Happy scrolling</h1>
+                    <h1>
+                        <a id="happy-scrolling" class="anchor" href="#happy-scrolling" aria-hidden="true"><span class="octicon octicon-link"></span></a>Happy scrolling</h1>
 
-<p>Made with &lt;3</p>
-        </section>
+                    <p>Made with &lt;3</p>
 
-        <aside id="sidebar">
-          <a href="https://github.com/jdnichollsc/Phaser-Kinect-Scrolling-Plugin/zipball/master" class="button">
-            <small>Download</small>
+
+                </section>
+
+                <aside id="sidebar">
+                    <a href="https://github.com/jdnichollsc/Phaser-Kinect-Scrolling/zipball/master" class="button">
+                        <small>Download</small>
             .zip file
-          </a>
-          <a href="https://github.com/jdnichollsc/Phaser-Kinect-Scrolling-Plugin/tarball/master" class="button">
-            <small>Download</small>
+                    </a>
+                    <a href="https://github.com/jdnichollsc/Phaser-Kinect-Scrolling/tarball/master" class="button">
+                        <small>Download</small>
             .tar.gz file
-          </a>
+                    </a>
 
-          <p class="repo-owner"><a href="https://github.com/jdnichollsc/Phaser-Kinect-Scrolling-Plugin"></a> is maintained by <a href="https://github.com/jdnichollsc">jdnichollsc</a>.</p>
+                    <p class="repo-owner"><a href="https://github.com/jdnichollsc/Phaser-Kinect-Scrolling"></a> is maintained by <a href="https://github.com/jdnichollsc">jdnichollsc</a>.</p>
 
-          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
-        </aside>
-      </div>
-    </div>
+                    <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
 
-  
-  </body>
+
+                    <div id="nichollsImage"></div>
+                </aside>
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/2.3.0/phaser.js"></script>
+        <script src="dist/phaser-kinect-scrolling-plugin.min.js"></script>
+        <script src="javascripts/base64Images.js"></script>
+        <script src="javascripts/main.js"></script>
+        <script>
+            var img = document.createElement("img");
+            img.setAttribute("src", nicholsURI);
+            img.setAttribute("alt", "Author");
+            document.getElementById("nichollsImage").appendChild(img);
+        </script>
+    </body>
 </html>
