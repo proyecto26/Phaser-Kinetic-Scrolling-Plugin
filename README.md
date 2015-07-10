@@ -1,33 +1,33 @@
-# Kinect Scrolling Plugin for Phaser Framework
+# Kinetic Scrolling Plugin for Phaser Framework
 
-![Kinect Scrolling Plugin](https://raw.githubusercontent.com/jdnichollsc/Phaser-Kinect-Scrolling-Plugin/gh-pages/images/plugin.png)
+![Kinetic Scrolling Plugin](https://raw.githubusercontent.com/jdnichollsc/Phaser-Kinetic-Scrolling-Plugin/gh-pages/images/plugin.png)
 
 I wanted to simulate scrolling horizontal in my games to display levels for example or a section of authors using only the canvas element in HTML5, but I could not find a good solution... so I decided to create my own plugin to Phaser Framework :D
 
-//Kinect scrolling based on http://ariya.ofilabs.com/2013/11/javascript-kinetic-scrolling-part-2.html
+//Kinetic scrolling based on http://ariya.ofilabs.com/2013/11/javascript-kinetic-scrolling-part-2.html
 
 ##Load the Plugin
 
 ```javascript
-this.game.kinectScrolling = this.game.plugins.add(Phaser.Plugin.KinectScrolling);
+this.game.kineticScrolling = this.game.plugins.add(Phaser.Plugin.KineticScrolling);
 ```
 
 ##Disable the kinematic motion - *_I don't know why but it is possible_*
 
 ```javascript
-this.game.kinectScrolling.init(false);
+this.game.kineticScrolling.init(false);
 ```
 
 ##Start the Plugin
 
 ```javascript
-this.game.kinectScrolling.start();
+this.game.kineticScrolling.start();
 ```
 
 ##Stop the Plugin
 
 ```javascript
-this.game.kinectScrolling.stop();
+this.game.kineticScrolling.stop();
 ```
 
 ##Complete Example
@@ -37,12 +37,12 @@ var game = new Phaser.Game(1024, 768, Phaser.AUTO, '', {
     init: function () {
         
         //Load the plugin
-        this.game.kinectScrolling = this.game.plugins.add(Phaser.Plugin.KinectScrolling);
+        this.game.kineticScrolling = this.game.plugins.add(Phaser.Plugin.KineticScrolling);
     },
     create: function () {
 
         //Starts the plugin
-        this.game.kinectScrolling.start();
+        this.game.kineticScrolling.start();
 
         this.rectangles = [];
 
