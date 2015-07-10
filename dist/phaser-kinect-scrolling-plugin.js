@@ -1,12 +1,12 @@
 /**
-* Phaser Kinect Scrolling Plugin
+* Phaser Kinetic Scrolling Plugin
 * @author Juan Nicholls - www.nicholls.co
 * @version 0.1.1
 */
 (function (Phaser) {
     'use strict';
 
-    Phaser.Plugin.KinectScrolling = function (game, parent) {
+    Phaser.Plugin.KineticScrolling = function (game, parent) {
         Phaser.Plugin.call(this, game, parent);
 
         this.kineticMovement = true;
@@ -21,22 +21,22 @@
         this.callbackID = 0;
     };
 
-    Phaser.Plugin.KinectScrolling.prototype = Object.create(Phaser.Plugin.prototype);
-    Phaser.Plugin.KinectScrolling.prototype.constructor = Phaser.Plugin.KinectScrolling;
+    Phaser.Plugin.KineticScrolling.prototype = Object.create(Phaser.Plugin.prototype);
+    Phaser.Plugin.KineticScrolling.prototype.constructor = Phaser.Plugin.KineticScrolling;
 
     /**
     * Swith the kinematic movement from true or false
     *
-    * @method Phaser.Plugin.KinectScrolling#init
+    * @method Phaser.Plugin.KineticScrolling#init
     * @param {boolean} kineticMovement - Enable or Disable the kinematic motion
     */
-    Phaser.Plugin.KinectScrolling.prototype.init = function (kineticMovement) {
+    Phaser.Plugin.KineticScrolling.prototype.init = function (kineticMovement) {
 
         if (kineticMovement !== undefined) this.kineticMovement = kineticMovement;
 
     };
 
-    Phaser.Plugin.KinectScrolling.prototype.start = function () {
+    Phaser.Plugin.KineticScrolling.prototype.start = function () {
 
         this.game.input.onDown.add(this.beginMove, this);
 
@@ -46,7 +46,7 @@
 
     };
 
-    Phaser.Plugin.KinectScrolling.prototype.beginMove = function () {
+    Phaser.Plugin.KineticScrolling.prototype.beginMove = function () {
 
         this.startX = this.game.input.x;
 
@@ -58,7 +58,7 @@
 
     };
 
-    Phaser.Plugin.KinectScrolling.prototype.moveCamera = function (pointer, x) {
+    Phaser.Plugin.KineticScrolling.prototype.moveCamera = function (pointer, x) {
 
         if (!this.dragging) return;
 
@@ -80,7 +80,7 @@
 
     };
 
-    Phaser.Plugin.KinectScrolling.prototype.endMove = function () {
+    Phaser.Plugin.KineticScrolling.prototype.endMove = function () {
 
         this.dragging = false;
 
@@ -99,7 +99,7 @@
 
     };
 
-    Phaser.Plugin.KinectScrolling.prototype.update = function () {
+    Phaser.Plugin.KineticScrolling.prototype.update = function () {
 
         if (this.autoScroll && this.amplitude != 0) {
 
@@ -120,7 +120,7 @@
 
     };
 
-    Phaser.Plugin.KinectScrolling.prototype.stop = function () {
+    Phaser.Plugin.KineticScrolling.prototype.stop = function () {
 
         this.game.input.onDown.add(this.beginMove, this);
 
