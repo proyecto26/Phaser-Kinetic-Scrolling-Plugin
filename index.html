@@ -4,22 +4,22 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		
-		<link rel="icon" href="favicon.ico">
-		
-		<meta property="article:author" content="https://www.facebook.com/jdnichollsc" />
-		<meta property="og:title" content="Phaser Kinetic Scrolling Plugin" />
-		<meta property="og:description" content="Kinetic Scrolling plugin for Canvas using Phaser Framework." />
-		<meta property="og:image" content="https://raw.githubusercontent.com/jdnichollsc/Phaser-Kinetic-Scrolling-Plugin/gh-pages/img/plugin.png" />
-		
+
+        <link rel="icon" href="favicon.ico">
+
+        <meta property="article:author" content="https://www.facebook.com/jdnichollsc" />
+        <meta property="og:title" content="Phaser Kinetic Scrolling Plugin" />
+        <meta property="og:description" content="Kinetic Scrolling plugin for Canvas using Phaser Framework." />
+        <meta property="og:image" content="https://raw.githubusercontent.com/jdnichollsc/Phaser-Kinetic-Scrolling-Plugin/gh-pages/img/plugin.png" />
+
         <link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet" type="text/css">
         <link rel="stylesheet" type="text/css" href="css/stylesheet.css" media="screen">
         <link rel="stylesheet" type="text/css" href="css/github-light.css" media="screen">
         <link rel="stylesheet" type="text/css" href="css/print.css" media="print">
 
                     <!--[if lt IE 9]>
-                            <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-                            <![endif]-->
+                                                    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+                                                    <![endif]-->
         <title>Phaser Kinetic Scrolling Plugin by jdnichollsc</title>
     </head>
 
@@ -36,8 +36,8 @@
             <div class="inner clearfix">
                 <section id="main-content">
 
-                    <div id="kinematicGame" style="max-width: 100%;height: 350px;position: relative;"></div>
-
+                    <div id="kinematicHorizontalGame" style="position: relative;"></div>
+                    <br />
                     <h1>
                         <a id="kinetic-scrolling-plugin-for-phaser-framework" class="anchor" href="#kinetic-scrolling-plugin-for-phaser-framework" aria-hidden="true"><span class="octicon octicon-link"></span></a>Kinetic Scrolling Plugin for Phaser Framework</h1>
 
@@ -51,10 +51,15 @@
                     <div class="highlight highlight-javascript"><pre><span class="pl-v">this</span>.game.kineticScrolling <span class="pl-k">=</span> <span class="pl-v">this</span>.game.<span class="pl-c1">plugins</span>.<span class="pl-c1">add</span>(Phaser.<span class="pl-c1">Plugin</span>.KineticScrolling);</pre></div>
 
                     <h2>
-                        <a id="disable-the-kinematic-motion---i-dont-know-why-but-it-is-possible" class="anchor" href="#disable-the-kinematic-motion---i-dont-know-why-but-it-is-possible" aria-hidden="true"><span class="octicon octicon-link"></span></a>Disable the kinematic motion - <em><em>I don't know why but it is possible</em></em>
+                        <a id="change-default-settings-of-the-plugin---it-isnt-necessary-default-is-horizontal" class="anchor" href="#change-default-settings-of-the-plugin---it-isnt-necessary-default-is-horizontal" aria-hidden="true"><span class="octicon octicon-link"></span></a>Change Default Settings of the Plugin - <em><em>It isn't necessary, default is horizontal</em></em>
                     </h2>
 
-                    <div class="highlight highlight-javascript"><pre><span class="pl-v">this</span>.game.kineticScrolling.init(<span class="pl-c1">false</span>);</pre></div>
+                    <div class="highlight highlight-javascript"><pre><span class="pl-v">this</span>.game.kineticScrolling.configure({
+    timeConstant<span class="pl-k">:</span> <span class="pl-c1">325</span>, <span class="pl-c">//really mimic iOS</span>
+    kineticMovement<span class="pl-k">:</span> <span class="pl-c1">true</span>,
+    horizontalScroll<span class="pl-k">:</span> <span class="pl-c1">true</span>,
+    verticalScroll<span class="pl-k">:</span> <span class="pl-c1">false</span>
+});</pre></div>
 
                     <h2>
                         <a id="start-the-plugin" class="anchor" href="#start-the-plugin" aria-hidden="true"><span class="octicon octicon-link"></span></a>Start the Plugin</h2>
@@ -109,10 +114,12 @@
 
                     <p>Made with &lt;3</p>
 
-
+                    <div id="kinematicHVGame" style="position: relative;"></div>
                 </section>
 
                 <aside id="sidebar">
+                    <div id="kinematicVerticalGame" style="margin-bottom: 50px;position: relative;"></div>
+
                     <a href="https://github.com/jdnichollsc/Phaser-Kinetic-Scrolling-Plugin/zipball/master" class="button">
                         <small>Download</small>
             .zip file
@@ -134,7 +141,9 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/2.3.0/phaser.js"></script>
         <script src="lib/phaser-kinetic-scrolling-plugin.min.js"></script>
         <script src="js/base64Images.js"></script>
-        <script src="js/main.js"></script>
+        <script src="js/kinematicHorizontalGame.js"></script>
+        <script src="js/kinematicVerticalGame.js"></script>
+        <script src="js/kinematicHVGame.js"></script>
         <script>
             var img = document.createElement("img");
             img.setAttribute("src", nicholsURI);

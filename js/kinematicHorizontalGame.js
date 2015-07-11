@@ -1,5 +1,5 @@
 
-var kinematicGame = new Phaser.Game(898, 430, Phaser.AUTO, 'kinematicGame', {
+var kinematicHorizontalGame = new Phaser.Game(898, 430, Phaser.AUTO, 'kinematicHorizontalGame', {
     init: function () {
         this.game.stage.backgroundColor = '#FFF';
         this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
@@ -9,6 +9,10 @@ var kinematicGame = new Phaser.Game(898, 430, Phaser.AUTO, 'kinematicGame', {
 
         //Load the plugin
         this.game.kineticScrolling = this.game.plugins.add(Phaser.Plugin.KineticScrolling);
+
+        this.game.kineticScrolling.configure({
+            verticalScroll: true
+        });
     },
     preload: function () {
         this.game.load.image('mobile', mobileURI);
@@ -32,7 +36,7 @@ var kinematicGame = new Phaser.Game(898, 430, Phaser.AUTO, 'kinematicGame', {
         }
 
         //Changing the world width
-        this.game.world.setBounds(0, 0, 320 * this.rectangles.length, this.game.height);
+        this.game.world.setBounds(0, 0, 312 * this.rectangles.length, this.game.height);
 
         this.mobile = this.game.add.sprite(0, 0, 'mobile');
         this.mobile.fixedToCamera = true;
@@ -42,9 +46,9 @@ var kinematicGame = new Phaser.Game(898, 430, Phaser.AUTO, 'kinematicGame', {
         this.horizontalScroll.anchor.set(0.5);
         this.horizontalScroll.scale.set(0.7);
         this.horizontalScroll.fixedToCamera = true;
-        this.horizontalScroll.cameraOffset.setTo(this.game.width/2, this.game.height - 120);
+        this.horizontalScroll.cameraOffset.setTo(this.game.width / 2, this.game.height - 120);
 
-        this.game.add.tween(this.horizontalScroll.scale).to({  x: 0.9, y: 0.9 }, 800, "Linear", true, 0, -1).yoyo(true, 100);
+        this.game.add.tween(this.horizontalScroll.scale).to({ x: 0.9, y: 0.9 }, 800, "Linear", true, 0, -1).yoyo(true, 100);
     },
     createRectangle: function (x, y, w, h) {
         var sprite = this.game.add.graphics(x, y);
