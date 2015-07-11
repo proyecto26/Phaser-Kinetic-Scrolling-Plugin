@@ -1,6 +1,9 @@
 var kinematicHVLoadState = {
     init: function () {
-        //this.game.stage.backgroundColor = '#FFF';
+        this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+        this.scale.pageAlignHorizontally = true;
+        this.scale.pageAlignVertically = true;
+        this.scale.setScreenSize(true);
 
         //Load the plugin
         this.game.kineticScrolling = this.game.plugins.add(Phaser.Plugin.KineticScrolling);
