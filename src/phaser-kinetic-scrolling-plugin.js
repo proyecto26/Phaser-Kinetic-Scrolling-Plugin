@@ -1,7 +1,7 @@
 /**
 * Phaser Kinetic Scrolling Plugin
 * @author Juan Nicholls - www.nicholls.co
-* @version 0.1.2
+* @version 0.1.1
 */
 (function (Phaser) {
     'use strict';
@@ -49,7 +49,7 @@
     * @param {number}  [options.timeConstant=325]      - The rate of deceleration for the scrolling.
     * @param {boolean} [options.kineticMovement=true]  - Enable or Disable the kinematic motion.
     * @param {boolean} [options.horizontalScroll=true] - Enable or Disable the horizontal scrolling.
-    * @param {boolean} [options.verticalScroll=true]   - Enable or Disable the vertical scrolling.
+    * @param {boolean} [options.verticalScroll=false]  - Enable or Disable the vertical scrolling.
     */
     Phaser.Plugin.KineticScrolling.prototype.configure = function (options) {
 
