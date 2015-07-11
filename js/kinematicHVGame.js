@@ -20,7 +20,14 @@ var kinematicHVGame = new Phaser.Game(900, 550, Phaser.AUTO, 'kinematicHVGame', 
     create: function () {
 
         //Starts the plugin
-        this.game.kineticScrolling.start();        
+        this.game.kineticScrolling.start();
+
+        //Changing the world height
+        var zeldaMap = this.game.cache.getImage("zelda");
+        this.game.world.setBounds(0, 0, zeldaMap.width, zeldaMap.height);
+
+        this.game.camera.x = this.game.world.centerX - 200;
+        this.game.camera.y = this.game.world.centerY + 480;
 
         this.map = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, 'zelda');
         this.map.anchor.set(0.5);
@@ -31,8 +38,6 @@ var kinematicHVGame = new Phaser.Game(900, 550, Phaser.AUTO, 'kinematicHVGame', 
         this.tv.scale.set(1);
         this.tv.cameraOffset.setTo(this.game.width / 2, this.game.height / 2);
 
-        //Changing the world height
-        this.game.world.setBounds(0, 0, this.map.width, this.map.length);
 
     },
     createRectangle: function (x, y, w, h) {
