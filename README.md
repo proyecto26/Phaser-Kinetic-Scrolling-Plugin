@@ -12,10 +12,15 @@ I wanted to simulate horizontal scrolling in my games to display levels or a sec
 this.game.kineticScrolling = this.game.plugins.add(Phaser.Plugin.KineticScrolling);
 ```
 
-##Disable the kinematic motion - *_I don't know why but it is possible_*
+##Change Default Settings of the Plugin - *_It isn't necessary, default is horizontal_*
 
 ```javascript
-this.game.kineticScrolling.init(false);
+this.game.kineticScrolling.configure({
+    timeConstant: 325, //really mimic iOS
+    kineticMovement: true,
+    horizontalScroll: true,
+    verticalScroll: false
+});
 ```
 
 ##Start the Plugin
