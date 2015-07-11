@@ -16,6 +16,7 @@ var kinematicHVGame = new Phaser.Game(900, 550, Phaser.AUTO, 'kinematicHVGame', 
         this.game.load.image('mobile', mobileURI);
         this.game.load.image('tv', 'img/tv.png');
         this.game.load.image('zelda', 'img/zelda.png');
+        this.game.load.image('scroll', 'img/scroll.png');
     },
     create: function () {
 
@@ -38,7 +39,12 @@ var kinematicHVGame = new Phaser.Game(900, 550, Phaser.AUTO, 'kinematicHVGame', 
         this.tv.scale.set(1);
         this.tv.cameraOffset.setTo(this.game.width / 2, this.game.height / 2);
 
+        this.scroll = this.game.add.image(0, 0, 'scroll');
+        this.scroll.anchor.set(0.5);
+        this.scroll.fixedToCamera = true;
+        this.scroll.cameraOffset.setTo(this.game.width / 2 + 150, this.game.height - 150);
 
+        this.game.add.tween(this.scroll.scale).to({ x: 0.9, y: 0.9 }, 800, "Linear", true, 0, -1).yoyo(true, 100);
     },
     createRectangle: function (x, y, w, h) {
         var sprite = this.game.add.graphics(x, y);

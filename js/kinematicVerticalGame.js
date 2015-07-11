@@ -14,7 +14,7 @@ var kinematicVerticalGame = new Phaser.Game(210, 360, Phaser.AUTO, 'kinematicVer
     },
     preload: function () {
         this.game.load.image('mobile', mobileURI);
-        this.game.load.image('horizontalScroll', horizontalScrollURI);
+        this.game.load.image('verticalScroll', verticalScrollURI);
     },
     create: function () {
 
@@ -43,7 +43,13 @@ var kinematicVerticalGame = new Phaser.Game(210, 360, Phaser.AUTO, 'kinematicVer
         this.mobile.scale.set(0.4);
         this.mobile.cameraOffset.setTo(this.game.width / 2, this.game.height / 2);
 
-        //this.game.add.tween(this.horizontalScroll.scale).to({ x: 0.9, y: 0.9 }, 800, "Linear", true, 0, -1).yoyo(true, 100);
+        this.verticalScroll = this.game.add.image(0, 0, 'verticalScroll');
+        this.verticalScroll.anchor.set(0.5);
+        this.verticalScroll.scale.set(0.5);
+        this.verticalScroll.fixedToCamera = true;
+        this.verticalScroll.cameraOffset.setTo(this.game.width / 2, this.game.height - 120);
+
+        this.game.add.tween(this.verticalScroll.scale).to({ x: 0.7, y: 0.7 }, 800, "Linear", true, 0, -1).yoyo(true, 100);
     },
     createRectangle: function (x, y, w, h) {
         var sprite = this.game.add.graphics(x, y);
