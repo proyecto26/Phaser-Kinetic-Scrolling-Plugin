@@ -1,7 +1,6 @@
-
-var kinematicHVGame = new Phaser.Game(900, 550, Phaser.AUTO, 'kinematicHVGame', {
+var kinematicHVLoadState = {
     init: function () {
-        this.game.stage.backgroundColor = '#FFF';
+        //this.game.stage.backgroundColor = '#FFF';
 
         //Load the plugin
         this.game.kineticScrolling = this.game.plugins.add(Phaser.Plugin.KineticScrolling);
@@ -13,13 +12,38 @@ var kinematicHVGame = new Phaser.Game(900, 550, Phaser.AUTO, 'kinematicHVGame', 
         });
     },
     preload: function () {
-        this.game.load.image('mobile', mobileURI);
+        this.game.load.image('loading', 'img/loading.png');
+        this.game.load.image('loadingborder', 'img/loadingborder.png');
         this.game.load.image('tv', 'img/tv.png');
+    },
+    create: function(){
+        this.game.state.start('play');
+    }
+};
+
+var kinematicHVGameState = {
+    preload: function(){
+        this.labelloading = this.game.add.text(this.game.world.centerX -70,
+                                     this.game.world.centerY - 70,
+                                     'cargando...',
+                                     { font: '30px Arial', fill: '#fff' });
+        this.labelloading.anchor.setTo(0.5, 0.5);
+        this.preloadingborder = this.game.add.sprite(this.game.world.centerX - 70, this.game.world.centerY -30, 'loadingborder');
+        this.preloadingborder.x -= this.preloadingborder.width / 2;
+        this.preloading = this.game.add.sprite(this.game.world.centerX - 70, this.game.world.centerY -26, 'loading');
+        this.preloading.x -= this.preloading.width / 2;
+        this.game.load.setPreloadSprite(this.preloading, 0);
+
+        this.tv = this.game.add.sprite(0, 0, 'tv');
+        this.tv.fixedToCamera = true;
+        this.tv.anchor.set(0.5);
+        this.tv.scale.set(1);
+        this.tv.cameraOffset.setTo(this.game.width / 2, this.game.height / 2);
+
         this.game.load.image('zelda', 'img/zelda.png');
         this.game.load.image('scroll', 'img/scroll.png');
     },
-    create: function () {
-
+    create: function(){
         //Starts the plugin
         this.game.kineticScrolling.start();
 
@@ -33,11 +57,7 @@ var kinematicHVGame = new Phaser.Game(900, 550, Phaser.AUTO, 'kinematicHVGame', 
         this.map = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, 'zelda');
         this.map.anchor.set(0.5);
 
-        this.tv = this.game.add.sprite(0, 0, 'tv');
-        this.tv.fixedToCamera = true;
-        this.tv.anchor.set(0.5);
-        this.tv.scale.set(1);
-        this.tv.cameraOffset.setTo(this.game.width / 2, this.game.height / 2);
+        this.game.world.bringToTop(this.tv);
 
         this.scroll = this.game.add.image(0, 0, 'scroll');
         this.scroll.anchor.set(0.5);
@@ -45,12 +65,11 @@ var kinematicHVGame = new Phaser.Game(900, 550, Phaser.AUTO, 'kinematicHVGame', 
         this.scroll.cameraOffset.setTo(this.game.width / 2 + 150, this.game.height - 150);
 
         this.game.add.tween(this.scroll.scale).to({ x: 0.9, y: 0.9 }, 800, "Linear", true, 0, -1).yoyo(true, 100);
-    },
-    createRectangle: function (x, y, w, h) {
-        var sprite = this.game.add.graphics(x, y);
-        sprite.beginFill(Phaser.Color.getRandomColor(100, 255), 1);
-        sprite.bounds = new PIXI.Rectangle(0, 0, w, h);
-        sprite.drawRect(0, 0, w, h);
-        return sprite;
     }
-});
+};
+
+var kinematicHVGame = new Phaser.Game(900, 550, Phaser.AUTO, 'kinematicHVGame');
+	        
+kinematicHVGame.state.add('load', kinematicHVLoadState);
+kinematicHVGame.state.add('play', kinematicHVGameState);
+kinematicHVGame.state.start('load');
