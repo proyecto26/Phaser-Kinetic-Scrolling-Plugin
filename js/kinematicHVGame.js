@@ -54,7 +54,7 @@ var kinematicHVGameState = {
         this.music.loop = true;
         this.music.play();
 
-        this.game.sound.mute = false;
+        this.game.sound.mute = true;
 
         var inview = new Waypoint.Inview({
             element: this.game.canvas,
