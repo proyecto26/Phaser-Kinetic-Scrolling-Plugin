@@ -2,6 +2,8 @@
 var kinematicVerticalGame = new Phaser.Game(210, 360, Phaser.AUTO, 'kinematicVerticalGame', {
     init: function () {
         this.game.stage.backgroundColor = '#FFF';
+        this.scale.pageAlignHorizontally = true;
+        this.scale.setScreenSize(true);
 
         //Load the plugin
         this.game.kineticScrolling = this.game.plugins.add(Phaser.Plugin.KineticScrolling);
