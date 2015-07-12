@@ -9,14 +9,11 @@ var kinematicHorizontalGame = new Phaser.Game(898, 430, Phaser.AUTO, 'kinematicH
 
         //Load the plugin
         this.game.kineticScrolling = this.game.plugins.add(Phaser.Plugin.KineticScrolling);
-
-        this.game.kineticScrolling.configure({
-            verticalScroll: true
-        });
     },
     preload: function () {
         this.game.load.image('mobile', mobileURI);
         this.game.load.image('horizontalScroll', horizontalScrollURI);
+        this.game.load.image('mouseWheel', mouseWheelURI);
     },
     create: function () {
 
@@ -49,6 +46,12 @@ var kinematicHorizontalGame = new Phaser.Game(898, 430, Phaser.AUTO, 'kinematicH
         this.horizontalScroll.cameraOffset.setTo(this.game.width / 2, this.game.height - 120);
 
         this.game.add.tween(this.horizontalScroll.scale).to({ x: 0.9, y: 0.9 }, 800, "Linear", true, 0, -1).yoyo(true, 100);
+        if (this.game.device.desktop) {
+            this.mouseWheel = this.game.add.image(0, 0, 'mouseWheel');
+            this.mouseWheel.anchor.set(1);
+            this.mouseWheel.fixedToCamera = true;
+            this.mouseWheel.cameraOffset.setTo(this.game.width - 40, this.game.height - 20);
+        }
     },
     createRectangle: function (x, y, w, h) {
         var sprite = this.game.add.graphics(x, y);

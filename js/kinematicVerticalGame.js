@@ -9,12 +9,14 @@ var kinematicVerticalGame = new Phaser.Game(210, 360, Phaser.AUTO, 'kinematicVer
         //Configure the plugin
         this.game.kineticScrolling.configure({
             verticalScroll: true,
-            horizontalScroll: false
+            horizontalScroll: false,
+            verticalWheel: true
         });
     },
     preload: function () {
         this.game.load.image('mobile', mobileURI);
         this.game.load.image('verticalScroll', verticalScrollURI);
+        this.game.load.image('mouseWheel', mouseWheelURI);
     },
     create: function () {
 
@@ -50,6 +52,14 @@ var kinematicVerticalGame = new Phaser.Game(210, 360, Phaser.AUTO, 'kinematicVer
         this.verticalScroll.cameraOffset.setTo(this.game.width / 2, this.game.height - 120);
 
         this.game.add.tween(this.verticalScroll.scale).to({ x: 0.7, y: 0.7 }, 800, "Linear", true, 0, -1).yoyo(true, 100);
+
+        if (this.game.device.desktop) {
+            this.mouseWheel = this.game.add.image(0, 0, 'mouseWheel');
+            this.mouseWheel.anchor.set(1);
+            this.mouseWheel.scale.set(0.6);
+            this.mouseWheel.fixedToCamera = true;
+            this.mouseWheel.cameraOffset.setTo(this.game.width - 30, this.game.height - 10);
+        }
     },
     createRectangle: function (x, y, w, h) {
         var sprite = this.game.add.graphics(x, y);
