@@ -16,10 +16,13 @@ this.game.kineticScrolling = this.game.plugins.add(Phaser.Plugin.KineticScrollin
 
 ```javascript
 this.game.kineticScrolling.configure({
-    timeConstant: 325, //really mimic iOS
     kineticMovement: true,
+    timeConstantScroll: 325, //really mimic iOS
     horizontalScroll: true,
-    verticalScroll: false
+    verticalScroll: false,
+    horizontalWheel: true,
+    verticalWheel: false,
+    deltaWheel: 40
 });
 ```
 
