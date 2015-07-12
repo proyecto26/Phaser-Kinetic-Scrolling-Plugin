@@ -18,22 +18,24 @@ var kinematicHVLoadState = {
         this.game.load.image('loading', 'img/loading.png');
         this.game.load.image('loadingborder', 'img/loadingborder.png');
         this.game.load.image('tv', 'img/tv.png');
+
+        this.game.load.audio('zelda', ['audio/zelda.ogg', 'audio/zelda.mp3']);
     },
-    create: function(){
+    create: function () {
         this.game.state.start('play');
     }
 };
 
 var kinematicHVGameState = {
-    preload: function(){
-        this.labelloading = this.game.add.text(this.game.world.centerX -70,
+    preload: function () {
+        this.labelloading = this.game.add.text(this.game.world.centerX - 70,
                                      this.game.world.centerY - 70,
                                      'cargando...',
                                      { font: '30px Arial', fill: '#fff' });
         this.labelloading.anchor.setTo(0.5, 0.5);
-        this.preloadingborder = this.game.add.sprite(this.game.world.centerX - 70, this.game.world.centerY -30, 'loadingborder');
+        this.preloadingborder = this.game.add.sprite(this.game.world.centerX - 70, this.game.world.centerY - 30, 'loadingborder');
         this.preloadingborder.x -= this.preloadingborder.width / 2;
-        this.preloading = this.game.add.sprite(this.game.world.centerX - 70, this.game.world.centerY -26, 'loading');
+        this.preloading = this.game.add.sprite(this.game.world.centerX - 70, this.game.world.centerY - 26, 'loading');
         this.preloading.x -= this.preloading.width / 2;
         this.game.load.setPreloadSprite(this.preloading, 0);
 
@@ -45,8 +47,24 @@ var kinematicHVGameState = {
 
         this.game.load.image('zelda', 'img/zelda.png');
         this.game.load.image('scroll', 'img/scroll.png');
+
+
+        var self = this;
+        this.music = this.game.add.audio('zelda');
+        this.music.loop = true;
+        this.music.play();
+
+        var inview = new Waypoint.Inview({
+            element: this.game.canvas,
+            enter: function (direction) {
+                self.game.sound.mute = false;
+            },
+            exit: function (direction) {
+                self.game.sound.mute = true;
+            }
+        })
     },
-    create: function(){
+    create: function () {
         //Starts the plugin
         this.game.kineticScrolling.start();
 
@@ -72,7 +90,7 @@ var kinematicHVGameState = {
 };
 
 var kinematicHVGame = new Phaser.Game(900, 550, Phaser.AUTO, 'kinematicHVGame');
-	        
+
 kinematicHVGame.state.add('load', kinematicHVLoadState);
 kinematicHVGame.state.add('play', kinematicHVGameState);
 kinematicHVGame.state.start('load');
