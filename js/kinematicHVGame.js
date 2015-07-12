@@ -59,7 +59,7 @@ var kinematicHVGameState = {
             enter: function (direction) {
                 self.game.sound.mute = false;
             },
-            exit: function (direction) {
+            exited: function (direction) {
                 self.game.sound.mute = true;
             }
         })
