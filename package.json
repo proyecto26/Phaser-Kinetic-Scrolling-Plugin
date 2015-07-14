@@ -1,13 +1,18 @@
 {
   "name": "phaser-kinetic-scrolling-plugin",
-  "version": "0.0.1",
+  "version": "0.1.2",
+  "release": "V 0.1.2",
+  "description": "Kinetic Scrolling Plugin for Phaser Framework",
   "author": "Juan David Nicholls Cardona <jdnichollsc@hotmail.com>",
-  "description": "Kinetic Scrolling plugin for Phaser.js",
-  "main": "dist/phaser-kinetic-scrolling-plugin.min.js",
+  "logo": "https://raw.github.com/jdnichollsc/Phaser-Kinetic-Scrolling-Plugin/gh-pages/img/plugin.png",
+  "main": "./dist/phaser-kinetic-scrolling-plugin.min.js",
   "keywords": [
     "phaser",
     "scroll",
     "camera",
+    "vertical",
+    "horizontal",
+    "mousewheel",
     "kinetic"
   ],
   "homepage": "http://jdnichollsc.github.io/Phaser-Kinetic-Scrolling/",  
@@ -19,6 +24,10 @@
     "url": "https://github.com/jdnichollsc/Phaser-Kinetic-Scrolling.git/issues"
   },
   "license": "MIT",
+  "licenseUrl": "http://www.opensource.org/licenses/mit-license.php",
+  "dependencies": {
+    "phaser": "^2.0.6" 
+  },
   "devDependencies": {
     "gulp": "^3.5.6",
     "gulp-concat": "^2.2.0",
