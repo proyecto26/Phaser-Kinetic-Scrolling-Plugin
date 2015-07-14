@@ -2,7 +2,7 @@
 
 ![Kinetic Scrolling Plugin](https://raw.githubusercontent.com/jdnichollsc/Phaser-Kinetic-Scrolling-Plugin/gh-pages/img/plugin.png)
 
-I wanted to simulate horizontal scrolling in my games to display levels or a section of authors using only the canvas element in HTML5, but I couldn't find a good solution... so I decided to create my own plugin to Phaser Framework :D
+I wanted to simulate horizontal and vertical scrolling in my games to display levels or a section of authors using only the canvas element in HTML5, but I couldn't find a good solution... so I decided to create my own plugin to Phaser Framework :D
 
 //Kinetic scrolling based on http://ariya.ofilabs.com/2013/11/javascript-kinetic-scrolling-part-2.html
 
@@ -38,7 +38,7 @@ this.game.kineticScrolling.start();
 this.game.kineticScrolling.stop();
 ```
 
-##Complete Example
+##Full Example
 
 ```javascript
 var game = new Phaser.Game(1024, 768, Phaser.AUTO, '', {
@@ -46,11 +46,15 @@ var game = new Phaser.Game(1024, 768, Phaser.AUTO, '', {
         
         //Load the plugin
         this.game.kineticScrolling = this.game.plugins.add(Phaser.Plugin.KineticScrolling);
+        
+        //If you want change the default configuration before start the plugin
     },
     create: function () {
 
         //Starts the plugin
         this.game.kineticScrolling.start();
+        
+        //If you want change the default configuration after start the plugin
 
         this.rectangles = [];
 
