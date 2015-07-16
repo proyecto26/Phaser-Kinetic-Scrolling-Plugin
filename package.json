@@ -1,7 +1,7 @@
 {
   "name": "phaser-kinetic-scrolling-plugin",
-  "version": "0.1.2",
-  "release": "V 0.1.2",
+  "version": "1.0.1",
+  "release": "V 1.0.1",
   "description": "Kinetic Scrolling Plugin for Phaser Framework",
   "author": "Juan David Nicholls Cardona <jdnichollsc@hotmail.com>",
   "logo": "https://raw.github.com/jdnichollsc/Phaser-Kinetic-Scrolling-Plugin/gh-pages/img/plugin.png",
@@ -18,7 +18,7 @@
   "homepage": "http://jdnichollsc.github.io/Phaser-Kinetic-Scrolling-Plugin/",  
   "repository": {
     "type": "git",
-    "url": "https://github.com/jdnichollsc/Phaser-Kinetic-Scrolling-Plugin.git"
+    "url": "git+https://github.com/jdnichollsc/Phaser-Kinetic-Scrolling-Plugin.git"
   },
   "bugs": {
     "url": "https://github.com/jdnichollsc/Phaser-Kinetic-Scrolling-Plugin/issues"
