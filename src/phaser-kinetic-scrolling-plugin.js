@@ -3,7 +3,7 @@
  * @author       Juan Nicholls <jdnichollsc@hotmail.com>
  * @copyright    2015 Juan Nicholls - http://jdnichollsc.github.io/Phaser-Kinetic-Scrolling-Plugin/
  * @license      {@link http://opensource.org/licenses/MIT}
- * @version 1.0.1
+ * @version 1.0.2
  */
 
 (function (Phaser) {
@@ -256,7 +256,12 @@
 
         this.game.input.onDown.remove(this.beginMove, this);
 
-        this.game.input.deleteMoveCallback(this.callbackID);
+        if(this.callbackID){
+            this.game.input.deleteMoveCallback(this.callbackID);    
+        }
+        else{
+            this.game.input.deleteMoveCallback(this.moveCamera, this);
+        }
 
         this.game.input.onUp.remove(this.endMove, this);
 
