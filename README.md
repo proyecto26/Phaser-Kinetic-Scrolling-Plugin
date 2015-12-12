@@ -6,6 +6,16 @@ I wanted to simulate horizontal and vertical scrolling in my games to display le
 
 //Kinetic scrolling based on http://ariya.ofilabs.com/2013/11/javascript-kinetic-scrolling-part-2.html
 
+##Download the Plugin
+
+Install via [bower](http://bower.io)
+
+`bower i phaser-kinetic-scrolling-plugin`
+
+Install via [npm](https://www.npmjs.com)
+
+`npm i phaser-kinetic-scrolling-plugin`
+
 ##Load the Plugin
 
 ```javascript
@@ -83,3 +93,5 @@ var game = new Phaser.Game(1024, 768, Phaser.AUTO, '', {
 
 # Happy scrolling
 Made with <3
+
+<img width="150px" src="http://phaser.azurewebsites.net/assets/nicholls.png" align="right">
