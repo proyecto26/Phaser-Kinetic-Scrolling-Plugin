@@ -21,8 +21,8 @@
     Phaser.Plugin.KineticScrolling = function (game, parent) {
         Phaser.Plugin.call(this, game, parent);
 
-
         this.dragging = false;
+        this.pressedDown = false;
         this.timestamp = 0;
         this.callbackID = 0;
 
@@ -109,7 +109,7 @@
         this.startX = this.game.input.x;
         this.startY = this.game.input.y;
 
-        this.dragging = true;
+        this.pressedDown = true;
 
         this.timestamp = Date.now();
 
@@ -123,7 +123,9 @@
     */
     Phaser.Plugin.KineticScrolling.prototype.moveCamera = function (pointer, x, y) {
 
-        if (!this.dragging) return;
+        if (!this.pressedDown) return;
+
+        this.dragging = false;
 
         this.now = Date.now();
         var elapsed = this.now - this.timestamp;
@@ -131,6 +133,7 @@
 
         if (this.settings.horizontalScroll) {
             var delta = x - this.startX; //Compute move distance
+            if (delta !== 0) this.dragging = true;
             this.startX = x;
             this.velocityX = 0.8 * (1000 * delta / (1 + elapsed)) + 0.2 * this.velocityX;
             this.game.camera.x -= delta;
@@ -138,6 +141,7 @@
 
         if (this.settings.verticalScroll) {
             var delta = y - this.startY; //Compute move distance
+            if (delta !== 0) this.dragging = true;
             this.startY = y;
             this.velocityY = 0.8 * (1000 * delta / (1 + elapsed)) + 0.2 * this.velocityY;
             this.game.camera.y -= delta;
@@ -150,7 +154,7 @@
     */
     Phaser.Plugin.KineticScrolling.prototype.endMove = function () {
 
-        this.dragging = false;
+        this.pressedDown = false;
         this.autoScrollX = false;
         this.autoScrollY = false;
 
@@ -189,19 +193,20 @@
 
         this.elapsed = Date.now() - this.timestamp;
 
-        if (this.autoScrollX && this.amplitudeX != 0) {
+        if (this.autoScrollX) {
 
             var delta = -this.amplitudeX * Math.exp(-this.elapsed / this.settings.timeConstantScroll);
             if (delta > 0.5 || delta < -0.5) {
                 this.game.camera.x = this.targetX - delta;
             }
             else {
+                this.dragging = false;
                 this.autoScrollX = false;
                 this.game.camera.x = this.targetX;
             }
         }
 
-        if (this.autoScrollY && this.amplitudeY != 0) {
+        if (this.autoScrollY) {
 
             var delta = -this.amplitudeY * Math.exp(-this.elapsed / this.settings.timeConstantScroll);
             if (delta > 0.5 || delta < -0.5) {
@@ -210,6 +215,7 @@
             else {
                 this.autoScrollY = false;
                 this.game.camera.y = this.targetY;
+                this.dragging = false;
             }
         }
 
