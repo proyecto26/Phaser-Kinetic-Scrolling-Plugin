@@ -4,7 +4,7 @@
 
 I wanted to simulate horizontal and vertical scrolling in my games to display levels or a section of authors using only the canvas element in HTML5, but I couldn't find a good solution... so I decided to create my own plugin to Phaser Framework :D
 
-//Kinetic scrolling based on http://ariya.ofilabs.com/2013/11/javascript-kinetic-scrolling-part-2.html
+> Kinetic scrolling based on http://ariya.ofilabs.com/2013/11/javascript-kinetic-scrolling-part-2.html
 
 ##Download the Plugin
 
