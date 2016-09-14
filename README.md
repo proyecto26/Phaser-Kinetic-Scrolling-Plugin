@@ -10,11 +10,11 @@ I wanted to simulate horizontal and vertical scrolling in my games to display le
 
 Install via [bower](http://bower.io)
 
-`bower i phaser-kinetic-scrolling-plugin`
+`bower i phaser-kinetic-scrolling-plugin --save`
 
 Install via [npm](https://www.npmjs.com)
 
-`npm i phaser-kinetic-scrolling-plugin`
+`npm i phaser-kinetic-scrolling-plugin --save`
 
 ##Load the Plugin
 
