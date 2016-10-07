@@ -53,17 +53,17 @@ this.game.kineticScrolling.stop();
 ```javascript
 var game = new Phaser.Game(1024, 768, Phaser.AUTO, '', {
     init: function () {
-        
+
         //Load the plugin
         this.game.kineticScrolling = this.game.plugins.add(Phaser.Plugin.KineticScrolling);
-        
+
         //If you want change the default configuration before start the plugin
     },
     create: function () {
 
         //Starts the plugin
         this.game.kineticScrolling.start();
-        
+
         //If you want change the default configuration after start the plugin
 
         this.rectangles = [];
@@ -90,6 +90,12 @@ var game = new Phaser.Game(1024, 768, Phaser.AUTO, '', {
     }
 });
 ```
+
+## Examples
+The repository has three examples of the plugin:
+- Horizontal scrolling
+- Horizontal scrolling with scrollbar
+- Horizontal scrolling and pressing events
 
 # Happy scrolling
 Made with <3
