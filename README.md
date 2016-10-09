@@ -96,6 +96,7 @@ The repository has three examples of the plugin:
 - Horizontal scrolling
 - Horizontal scrolling with scrollbar
 - Horizontal scrolling and pressing events
+- Horizontal and Vertical scrolling (Mouse wheel too)
 
 # Happy scrolling
 Made with <3
