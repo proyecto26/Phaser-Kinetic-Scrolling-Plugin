@@ -92,7 +92,7 @@ var game = new Phaser.Game(1024, 768, Phaser.AUTO, '', {
 ```
 
 ## Examples
-The repository has three examples of the plugin:
+The repository has some examples of the plugin:
 - Horizontal scrolling
 - Horizontal scrolling with scrollbar
 - Horizontal scrolling and pressing events
