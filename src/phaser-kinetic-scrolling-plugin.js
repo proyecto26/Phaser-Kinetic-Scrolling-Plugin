@@ -3,7 +3,7 @@
  * @author       Juan Nicholls <jdnichollsc@hotmail.com>
  * @copyright    2015 Juan Nicholls - http://jdnichollsc.github.io/Phaser-Kinetic-Scrolling-Plugin/
  * @license      {@link http://opensource.org/licenses/MIT}
- * @version 1.0.3
+ * @version 1.0.4
  */
 
 (function (Phaser) {
@@ -125,8 +125,6 @@
 
         if (!this.pressedDown) return;
 
-        this.dragging = false;
-
         this.now = Date.now();
         var elapsed = this.now - this.timestamp;
         this.timestamp = this.now;
@@ -153,8 +151,7 @@
     * Event triggered when a pointer is released, calculates the automatic scrolling.
     */
     Phaser.Plugin.KineticScrolling.prototype.endMove = function () {
-
-        this.dragging = false;
+        
         this.pressedDown = false;
         this.autoScrollX = false;
         this.autoScrollY = false;
@@ -163,24 +160,26 @@
 
         this.now = Date.now();
 
-        if (this.game.input.activePointer.withinGame && (this.velocityX > 10 || this.velocityX < -10)) {
-            this.amplitudeX = 0.8 * this.velocityX;
-            this.targetX = Math.round(this.game.camera.x - this.amplitudeX);
-            this.autoScrollX = true;
-        }
-
-        if (this.game.input.activePointer.withinGame && (this.velocityY > 10 || this.velocityY < -10)) {
-            this.amplitudeY = 0.8 * this.velocityY;
-            this.targetY = Math.round(this.game.camera.y - this.amplitudeY);
-            this.autoScrollY = true;
-        }
-
-        if (!this.game.input.activePointer.withinGame) {
-
-            if (this.settings.horizontalScroll) {
+        if(this.game.input.activePointer.withinGame){
+            if (this.velocityX > 10 || this.velocityX < -10) {
+                this.amplitudeX = 0.8 * this.velocityX;
+                this.targetX = Math.round(this.game.camera.x - this.amplitudeX);
                 this.autoScrollX = true;
             }
-            if (this.settings.verticalScroll) {
+
+            if (this.velocityY > 10 || this.velocityY < -10) {
+                this.amplitudeY = 0.8 * this.velocityY;
+                this.targetY = Math.round(this.game.camera.y - this.amplitudeY);
+                this.autoScrollY = true;
+            }
+        }
+        if (!this.game.input.activePointer.withinGame) {
+            this.velocityWheelXAbs = Math.abs(this.velocityWheelX);
+            this.velocityWheelYAbs = Math.abs(this.velocityWheelY);
+            if (this.settings.horizontalScroll && (this.velocityWheelXAbs < 0.1 || !this.game.input.activePointer.withinGame)) {
+                this.autoScrollX = true;
+            }
+            if (this.settings.verticalScroll && (this.velocityWheelYAbs < 0.1 || !this.game.input.activePointer.withinGame)) {
                 this.autoScrollY = true;
             }
         }
@@ -193,6 +192,8 @@
     Phaser.Plugin.KineticScrolling.prototype.update = function () {
 
         this.elapsed = Date.now() - this.timestamp;
+        this.velocityWheelXAbs = Math.abs(this.velocityWheelX);
+        this.velocityWheelYAbs = Math.abs(this.velocityWheelY);
 
         if (this.autoScrollX && this.amplitudeX != 0) {
 
@@ -218,14 +219,21 @@
             }
         }
 
-        if (this.settings.horizontalWheel && (this.velocityWheelX < -0.1 || this.velocityWheelX > 0.1 || !this.game.input.activePointer.withinGame)) {
-
+        if(!this.autoScrollX && !this.autoScrollY){
+            this.dragging = false;
+        }
+        
+        if (this.settings.horizontalWheel  && this.velocityWheelXAbs > 0.1) {
+            this.dragging = true;
+            this.amplitudeX = 0;
+            this.autoScrollX = false;
             this.game.camera.x -= this.velocityWheelX;
             this.velocityWheelX *= 0.95;
         }
 
-        if (this.settings.verticalWheel && (this.velocityWheelY < -0.1 || this.velocityWheelY > 0.1 || !this.game.input.activePointer.withinGame)) {
-
+        if (this.settings.verticalWheel && this.velocityWheelYAbs > 0.1) {
+            this.dragging = true;
+            this.autoScrollY = false;
             this.game.camera.y -= this.velocityWheelY;
             this.velocityWheelY *= 0.95;
         }

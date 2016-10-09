@@ -13,7 +13,11 @@ var game = new Phaser.Game(1024, 768, Phaser.AUTO, 'phaser-example', {
 
         //If you want change the default configuration after start the plugin
 
-        this.game.add.text(game.world.width*0.01, game.world.height*0.01, "Horizontal scroll and input events", { font: "16px Arial", fill: "#ffffff" });
+        this.info = this.game.add.text(game.world.width*0.01, game.world.height*0.01, "Horizontal scroll and input events", { 
+            font: "22px Arial", 
+            fill: "#ffffff" 
+        });
+        this.info.fixedToCamera = true;
 
         this.rectangles = [];
 
