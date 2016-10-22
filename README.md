@@ -8,6 +8,8 @@ I wanted to simulate horizontal and vertical scrolling in my games to display le
 
 ##Download the Plugin
 
+[![NPM](https://nodei.co/npm/phaser-kinetic-scrolling-plugin.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/phaser-kinetic-scrolling-plugin/)
+
 Install via [bower](http://bower.io)
 
 `bower i phaser-kinetic-scrolling-plugin --save`
