@@ -157,8 +157,6 @@
 
             var y = 0;
             if (this.game.camera.y > 0 && this.game.camera.y + this.game.camera.height < this.game.camera.bounds.height) {
-                console.log(this.game.camera);
-                console.log(this.game.camera.y, this.game.camera.bounds.height);
                 y = deltaY;
             }
 
