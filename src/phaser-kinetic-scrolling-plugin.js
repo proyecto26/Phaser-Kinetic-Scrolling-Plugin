@@ -21,6 +21,7 @@
     Phaser.Plugin.KineticScrolling = function (game, parent) {
         Phaser.Plugin.call(this, game, parent);
 
+        this.pointerId = null;
         this.dragging = false;
         this.pressedDown = false;
         this.timestamp = 0;
@@ -104,8 +105,9 @@
     /**
     * Event triggered when a pointer is pressed down, resets the value of variables.
     */
-    Phaser.Plugin.KineticScrolling.prototype.beginMove = function () {
+    Phaser.Plugin.KineticScrolling.prototype.beginMove = function (pointer) {
 
+        this.pointerId = pointer.id;
         this.startX = this.game.input.x;
         this.startY = this.game.input.y;
 
@@ -124,7 +126,9 @@
     Phaser.Plugin.KineticScrolling.prototype.moveCamera = function (pointer, x, y) {
 
         if (!this.pressedDown) return;
-
+        if (this.pointerId !== pointer.id) {
+            return;
+        }
         this.now = Date.now();
         var elapsed = this.now - this.timestamp;
         this.timestamp = this.now;
@@ -151,7 +155,8 @@
     * Event triggered when a pointer is released, calculates the automatic scrolling.
     */
     Phaser.Plugin.KineticScrolling.prototype.endMove = function () {
-        
+
+        this.pointerId = null;
         this.pressedDown = false;
         this.autoScrollX = false;
         this.autoScrollY = false;
