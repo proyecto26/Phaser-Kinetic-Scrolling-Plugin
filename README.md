@@ -34,7 +34,8 @@ this.game.kineticScrolling.configure({
     verticalScroll: false,
     horizontalWheel: true,
     verticalWheel: false,
-    deltaWheel: 40
+    deltaWheel: 40,
+    onUpdate: null
 });
 ```
 
@@ -99,6 +100,7 @@ The repository has some examples of the plugin:
 - Horizontal scrolling with scrollbar
 - Horizontal scrolling and pressing events
 - Horizontal and Vertical scrolling (Mouse wheel too)
+- onUpdate callback to track delta
 
 # Happy scrolling
 Made with <3
