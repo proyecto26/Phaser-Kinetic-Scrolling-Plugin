@@ -107,7 +107,7 @@
     * Event triggered when a pointer is pressed down, resets the value of variables.
     */
     Phaser.Plugin.KineticScrolling.prototype.beginMove = function (context, pointer) {
-        console.log(this.settings);
+
         if (this.settings.button && pointer.button !== Phaser.Mouse[this.settings.button]) {
             return;
         }
