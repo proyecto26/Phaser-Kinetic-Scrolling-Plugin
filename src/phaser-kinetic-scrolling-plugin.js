@@ -47,6 +47,10 @@
         this.velocityWheelX = 0;
         this.velocityWheelY = 0;
 
+        // if less than the two values is a Tap
+        this.thresholdOfTapTime = 70;
+        this.thresholdOfTapDistance = 2;
+
         this.settings = {
             kineticMovement: true,
             timeConstantScroll: 325, //really mimic iOS
@@ -111,6 +115,9 @@
         this.startX = this.game.input.x;
         this.startY = this.game.input.y;
 
+        this.screenX = pointer.screenX;
+        this.screenY = pointer.screenY;
+
         this.pressedDown = true;
 
         this.timestamp = Date.now();
@@ -141,12 +148,21 @@
         var elapsed = this.now - this.timestamp;
         this.timestamp = this.now;
 
+        var delta = 0;
+
+        // screenDelta without the scale
+        var screenDelta = 0;
+
         if (this.settings.horizontalScroll) {
             // Compute move distance
-            var delta = x - this.startX;
+            delta = x - this.startX;
+            screenDelta = pointer.screenX - this.screenX;
 
             // It`s a fast tap not move
-            if (this.now - this.beginTime <= 50 && Math.abs(delta) < 2) {
+            if (
+                this.now - this.beginTime < this.thresholdOfTapTime
+                && Math.abs(screenDelta) < this.thresholdOfTapDistance
+            ) {
                 return;
             }
             if (delta !== 0) {
@@ -159,10 +175,14 @@
 
         if (this.settings.verticalScroll) {
             // Compute move distance
-            var delta = y - this.startY;
+            delta = y - this.startY;
+            screenDelta = pointer.screenY - this.screenY;
 
             // It`s a fast tap not move
-            if (this.now - this.beginTime <= 50 && Math.abs(delta) < 2) {
+            if (
+                this.now - this.beginTime < this.thresholdOfTapTime
+                && Math.abs(screenDelta) < this.thresholdOfTapDistance
+            ) {
                 return;
             }
 
@@ -232,9 +252,10 @@
         this.velocityWheelXAbs = Math.abs(this.velocityWheelX);
         this.velocityWheelYAbs = Math.abs(this.velocityWheelY);
 
+        var delta = 0;
         if (this.autoScrollX && this.amplitudeX != 0) {
 
-            var delta = -this.amplitudeX * Math.exp(-this.elapsed / this.settings.timeConstantScroll);
+            delta = -this.amplitudeX * Math.exp(-this.elapsed / this.settings.timeConstantScroll);
             if (delta > 0.5 || delta < -0.5) {
                 this.game.camera.x = this.targetX - delta;
             }
@@ -246,7 +267,7 @@
 
         if (this.autoScrollY && this.amplitudeY != 0) {
 
-            var delta = -this.amplitudeY * Math.exp(-this.elapsed / this.settings.timeConstantScroll);
+            delta = -this.amplitudeY * Math.exp(-this.elapsed / this.settings.timeConstantScroll);
             if (delta > 0.5 || delta < -0.5) {
                 this.game.camera.y = this.targetY - delta;
             }
