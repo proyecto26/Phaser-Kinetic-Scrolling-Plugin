@@ -47,6 +47,10 @@
         this.velocityWheelX = 0;
         this.velocityWheelY = 0;
 
+        // if less than the two values is a Tap
+        this.thresholdOfTapTime = 70;
+        this.thresholdOfTapDistance = 2;
+
         this.settings = {
             kineticMovement: true,
             timeConstantScroll: 325, //really mimic iOS
@@ -111,9 +115,15 @@
         this.startX = this.game.input.x;
         this.startY = this.game.input.y;
 
+        this.screenX = pointer.screenX;
+        this.screenY = pointer.screenY;
+
         this.pressedDown = true;
 
         this.timestamp = Date.now();
+
+        // the time of press down
+        this.beginTime = this.timestamp;
 
         this.velocityY = this.amplitudeY = this.velocityX = this.amplitudeX = 0;
 
@@ -125,25 +135,61 @@
     */
     Phaser.Plugin.KineticScrolling.prototype.moveCamera = function (pointer, x, y) {
 
-        if (!this.pressedDown) return;
+        if (!this.pressedDown) {
+            return;
+        }
+
+        // If it is not the current pointer
         if (this.pointerId !== pointer.id) {
             return;
         }
+
         this.now = Date.now();
         var elapsed = this.now - this.timestamp;
         this.timestamp = this.now;
 
+        var delta = 0;
+
+        // screenDelta without the scale
+        var screenDelta = 0;
+
         if (this.settings.horizontalScroll) {
-            var delta = x - this.startX; //Compute move distance
-            if (delta !== 0) this.dragging = true;
+            // Compute move distance
+            delta = x - this.startX;
+            screenDelta = pointer.screenX - this.screenX;
+
+            // It`s a fast tap not move
+            if (
+                this.now - this.beginTime < this.thresholdOfTapTime
+                && Math.abs(screenDelta) < this.thresholdOfTapDistance
+            ) {
+                return;
+            }
+            if (delta !== 0) {
+                this.dragging = true;
+            }
             this.startX = x;
             this.velocityX = 0.8 * (1000 * delta / (1 + elapsed)) + 0.2 * this.velocityX;
             this.game.camera.x -= delta;
         }
 
         if (this.settings.verticalScroll) {
-            var delta = y - this.startY; //Compute move distance
-            if (delta !== 0) this.dragging = true;
+            // Compute move distance
+            delta = y - this.startY;
+            screenDelta = pointer.screenY - this.screenY;
+
+            // It`s a fast tap not move
+            if (
+                this.now - this.beginTime < this.thresholdOfTapTime
+                && Math.abs(screenDelta) < this.thresholdOfTapDistance
+            ) {
+                return;
+            }
+
+            if (delta !== 0) {
+                this.dragging = true;
+            }
+
             this.startY = y;
             this.velocityY = 0.8 * (1000 * delta / (1 + elapsed)) + 0.2 * this.velocityY;
             this.game.camera.y -= delta;
@@ -165,7 +211,7 @@
 
         this.now = Date.now();
 
-        if(this.game.input.activePointer.withinGame){
+        if (this.game.input.activePointer.withinGame) {
             if (this.velocityX > 10 || this.velocityX < -10) {
                 this.amplitudeX = 0.8 * this.velocityX;
                 this.targetX = Math.round(this.game.camera.x - this.amplitudeX);
@@ -181,10 +227,16 @@
         if (!this.game.input.activePointer.withinGame) {
             this.velocityWheelXAbs = Math.abs(this.velocityWheelX);
             this.velocityWheelYAbs = Math.abs(this.velocityWheelY);
-            if (this.settings.horizontalScroll && (this.velocityWheelXAbs < 0.1 || !this.game.input.activePointer.withinGame)) {
+            if (
+                this.settings.horizontalScroll
+                && (this.velocityWheelXAbs < 0.1 || !this.game.input.activePointer.withinGame)
+            ) {
                 this.autoScrollX = true;
             }
-            if (this.settings.verticalScroll && (this.velocityWheelYAbs < 0.1 || !this.game.input.activePointer.withinGame)) {
+            if (
+                this.settings.verticalScroll
+                && (this.velocityWheelYAbs < 0.1 || !this.game.input.activePointer.withinGame)
+            ) {
                 this.autoScrollY = true;
             }
         }
@@ -200,9 +252,10 @@
         this.velocityWheelXAbs = Math.abs(this.velocityWheelX);
         this.velocityWheelYAbs = Math.abs(this.velocityWheelY);
 
+        var delta = 0;
         if (this.autoScrollX && this.amplitudeX != 0) {
 
-            var delta = -this.amplitudeX * Math.exp(-this.elapsed / this.settings.timeConstantScroll);
+            delta = -this.amplitudeX * Math.exp(-this.elapsed / this.settings.timeConstantScroll);
             if (delta > 0.5 || delta < -0.5) {
                 this.game.camera.x = this.targetX - delta;
             }
@@ -214,7 +267,7 @@
 
         if (this.autoScrollY && this.amplitudeY != 0) {
 
-            var delta = -this.amplitudeY * Math.exp(-this.elapsed / this.settings.timeConstantScroll);
+            delta = -this.amplitudeY * Math.exp(-this.elapsed / this.settings.timeConstantScroll);
             if (delta > 0.5 || delta < -0.5) {
                 this.game.camera.y = this.targetY - delta;
             }
@@ -224,10 +277,10 @@
             }
         }
 
-        if(!this.autoScrollX && !this.autoScrollY){
+        if (!this.autoScrollX && !this.autoScrollY) {
             this.dragging = false;
         }
-        
+
         if (this.settings.horizontalWheel  && this.velocityWheelXAbs > 0.1) {
             this.dragging = true;
             this.amplitudeX = 0;
