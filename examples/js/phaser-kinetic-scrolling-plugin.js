@@ -48,8 +48,8 @@
         this.velocityWheelY = 0;
 
         // if less than the two values is a Tap
-        this.thresholdOfTapTime = 70;
-        this.thresholdOfTapDistance = 2;
+        this.thresholdOfTapTime = 100;
+        this.thresholdOfTapDistance = 10;
 
         this.settings = {
             kineticMovement: true,
