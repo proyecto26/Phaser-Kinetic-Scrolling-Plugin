@@ -102,7 +102,7 @@ The repository has some examples of the plugin:
 
 ## Collaborators
 * [VitaZheltyakov](https://github.com/VitaZheltyakov) - **Vitaliy** &lt;&gt;
-* [jdnichollsc](https://github.com/jdnichollsc) - **Juan David Nicholls** &lt;&gt;
+* [jdnichollsc](https://github.com/jdnichollsc) - **Juan David Nicholls** &lt;jdnichollsc@hotmail.com&gt;
 
 ## Happy scrolling
 Made with <3
