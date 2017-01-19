@@ -100,7 +100,10 @@ The repository has some examples of the plugin:
 - Horizontal scrolling and pressing events
 - Horizontal and Vertical scrolling (Mouse wheel too)
 
-# Happy scrolling
+## Collaborators
+- [Vitaliy](https://github.com/VitaZheltyakov)
+
+## Happy scrolling
 Made with <3
 
 <img width="150px" src="http://phaser.azurewebsites.net/assets/nicholls.png" align="right">
