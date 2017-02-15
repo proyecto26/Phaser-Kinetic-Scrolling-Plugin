@@ -6,7 +6,7 @@ I wanted to simulate horizontal and vertical scrolling in my games to display le
 
 > Kinetic scrolling based on http://ariya.ofilabs.com/2013/11/javascript-kinetic-scrolling-part-2.html
 
-##Download the Plugin
+## Download the Plugin
 
 [![NPM](https://nodei.co/npm/phaser-kinetic-scrolling-plugin.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/phaser-kinetic-scrolling-plugin/)
 
@@ -18,13 +18,13 @@ Install via [npm](https://www.npmjs.com)
 
 `npm i phaser-kinetic-scrolling-plugin --save`
 
-##Load the Plugin
+## Load the Plugin
 
 ```javascript
 this.game.kineticScrolling = this.game.plugins.add(Phaser.Plugin.KineticScrolling);
 ```
 
-##Change Default Settings of the Plugin - *_It isn't necessary, default is horizontal_*
+## Change Default Settings of the Plugin - *_It isn't necessary, default is horizontal_*
 
 ```javascript
 this.game.kineticScrolling.configure({
@@ -38,19 +38,19 @@ this.game.kineticScrolling.configure({
 });
 ```
 
-##Start the Plugin
+## Start the Plugin
 
 ```javascript
 this.game.kineticScrolling.start();
 ```
 
-##Stop the Plugin
+## Stop the Plugin
 
 ```javascript
 this.game.kineticScrolling.stop();
 ```
 
-##Full Example
+## Full Example
 
 ```javascript
 var game = new Phaser.Game(1024, 768, Phaser.AUTO, '', {
@@ -103,6 +103,10 @@ The repository has some examples of the plugin:
 ## Collaborators
 * [VitaZheltyakov](https://github.com/VitaZheltyakov) - **Vitaliy** &lt;&gt;
 * [jdnichollsc](https://github.com/jdnichollsc) - **Juan David Nicholls** &lt;jdnichollsc@hotmail.com&gt;
+
+## Other Projects
+- **[IonPhaser](http://market.ionic.io/plugins/ionphaser)**
+- **[Rotate Sprite Extension](https://github.com/jdnichollsc/Phaser-Rotate-Sprite-Extension)**
 
 ## Happy scrolling
 Made with <3
