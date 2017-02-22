@@ -53,7 +53,8 @@
             verticalScroll: false,
             horizontalWheel: true,
             verticalWheel: false,
-            deltaWheel: 40
+            deltaWheel: 40,
+            sprite: null
         };
     };
 
@@ -72,6 +73,7 @@
     * @param {boolean} [options.horizontalWheel=true]   - Enable or Disable the horizontal scrolling with mouse wheel.
     * @param {boolean} [options.verticalWheel=false]    - Enable or Disable the vertical scrolling with mouse wheel.
     * @param {number}  [options.deltaWheel=40]          - Delta increment of the mouse wheel.
+    * @param {object}  [options.sprite=null]            - a event owner.
     */
     Phaser.Plugin.KineticScrolling.prototype.configure = function (options) {
 
@@ -91,13 +93,16 @@
     * @method Phaser.Plugin.KineticScrolling#start
     */
     Phaser.Plugin.KineticScrolling.prototype.start = function () {
-
-        this.game.input.onDown.add(this.beginMove, this);
+        var sprite = this.settings.sprite;
+        if (sprite === null) {
+            this.game.input.onDown.add(this.beginMove, this);
+            this.game.input.onUp.add(this.endMove, this);
+        } else {
+            sprite.events.onInputDown.add(this.beginMove, this);
+            sprite.events.onInputUp.add(this.endMove, this);
+        }
 
         this.callbackID = this.game.input.addMoveCallback(this.moveCamera, this);
-
-        this.game.input.onUp.add(this.endMove, this);
-
         this.game.input.mouse.mouseWheelCallback = this.mouseWheel.bind(this);
     };
 
@@ -275,8 +280,14 @@
     * @method Phaser.Plugin.KineticScrolling#stop
     */
     Phaser.Plugin.KineticScrolling.prototype.stop = function () {
-
-        this.game.input.onDown.remove(this.beginMove, this);
+        var sprite = this.settings.sprite;
+        if (sprite === null) {
+            this.game.input.onDown.remove(this.beginMove, this);
+            this.game.input.onUp.remove(this.endMove, this);
+        } else {
+            sprite.events.onInputDown.remove(this.beginMove, this);
+            sprite.events.onInputUp.remove(this.endMove, this);
+        }
 
         if (this.callbackID) {
             this.game.input.deleteMoveCallback(this.callbackID);
@@ -284,8 +295,6 @@
         else {
             this.game.input.deleteMoveCallback(this.moveCamera, this);
         }
-
-        this.game.input.onUp.remove(this.endMove, this);
 
         this.game.input.mouse.mouseWheelCallback = null;
 
