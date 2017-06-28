@@ -101,12 +101,16 @@ The repository has some examples of the plugin:
 - Horizontal and Vertical scrolling (Mouse wheel too)
 
 ## Collaborators
-* [VitaZheltyakov](https://github.com/VitaZheltyakov) - **Vitaliy** &lt;&gt;
+* [VitaZheltyakov](https://github.com/VitaZheltyakov) - **Vitaliy**
 * [jdnichollsc](https://github.com/jdnichollsc) - **Juan David Nicholls** &lt;jdnichollsc@hotmail.com&gt;
 
 ## Other Projects
 - **[IonPhaser](http://market.ionic.io/plugins/ionphaser)**
 - **[Rotate Sprite Extension](https://github.com/jdnichollsc/Phaser-Rotate-Sprite-Extension)**
+
+## Supporting
+I believe in Unicorns 🦄
+Support [me](http://www.paypal.me/jdnichollsc/2), if you do too.
 
 ## Happy scrolling
 Made with <3
