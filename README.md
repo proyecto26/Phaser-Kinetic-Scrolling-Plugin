@@ -101,7 +101,7 @@ The repository has some examples of the plugin:
 - Horizontal and Vertical scrolling (Mouse wheel too)
 
 ## Collaborators
-* [VitaZheltyakov](https://github.com/VitaZheltyakov) - **Vitaliy**
+* [VitaZheltyakov](https://github.com/VitaZheltyakov) - **Vitaliy** &lt;vita-zhelt@yandex.ru&gt;
 * [jdnichollsc](https://github.com/jdnichollsc) - **Juan David Nicholls** &lt;jdnichollsc@hotmail.com&gt;
 
 ## Other Projects
