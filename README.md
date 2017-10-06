@@ -101,8 +101,10 @@ The repository has some examples of the plugin:
 - Horizontal and Vertical scrolling (Mouse wheel too)
 
 ## Collaborators
-* [VitaZheltyakov](https://github.com/VitaZheltyakov) - **Vitaliy** &lt;vita-zhelt@yandex.ru&gt;
-* [jdnichollsc](https://github.com/jdnichollsc) - **Juan David Nicholls** &lt;jdnichollsc@hotmail.com&gt;
+[<img alt="jdnichollsc" src="https://avatars3.githubusercontent.com/u/2154886?v=3&s=117" width="117">](https://github.com/jdnichollsc) |
+[<img alt="VitaZheltyakov" src="https://avatars3.githubusercontent.com/u/5693437?v=3&s=117" width="117">](https://github.com/VitaZheltyakov) |
+:---: |:---: |
+[Nicholls](jdnichollsc@hotmail.com) |[Vitaliy](mailto:vita-zhelt@yandex.ru) |
 
 ## Other Projects
 - **[IonPhaser](http://market.ionic.io/plugins/ionphaser)**
