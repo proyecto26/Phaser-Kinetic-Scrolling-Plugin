@@ -284,7 +284,7 @@
                     deltaX = delta;
                 }
 
-                this.settings.onUpdate(deltaX);
+                this.settings.onUpdate(deltaX, 0);
             }
         }
 
@@ -299,7 +299,7 @@
                     deltaY = delta;
                 }
 
-                this.settings.onUpdate(deltaY);
+                this.settings.onUpdate(0, deltaY);
             }
         }
 
