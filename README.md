@@ -34,7 +34,8 @@ this.game.kineticScrolling.configure({
     verticalScroll: false,
     horizontalWheel: true,
     verticalWheel: false,
-    deltaWheel: 40
+    deltaWheel: 40,
+    onUpdate: null
 });
 ```
 
@@ -99,12 +100,14 @@ The repository has some examples of the plugin:
 - Horizontal scrolling with scrollbar
 - Horizontal scrolling and pressing events
 - Horizontal and Vertical scrolling (Mouse wheel too)
+- onUpdate callback to track delta
 
 ## Collaborators
 [<img alt="jdnichollsc" src="https://avatars3.githubusercontent.com/u/2154886?v=3&s=117" width="117">](https://github.com/jdnichollsc) |
 [<img alt="VitaZheltyakov" src="https://avatars3.githubusercontent.com/u/5693437?v=3&s=117" width="117">](https://github.com/VitaZheltyakov) |
-:---: |:---: |
-[Nicholls](mailto:jdnichollsc@hotmail.com) |[Vitaliy](mailto:vita-zhelt@yandex.ru) |
+[<img alt="iamchristopher" src="https://avatars2.githubusercontent.com/u/5909516?v=3&s=117" width="117">](https://github.com/iamchristopher) |
+:---: |:---: |:---: |
+[Nicholls](mailto:jdnichollsc@hotmail.com) |[Vitaliy](mailto:vita-zhelt@yandex.ru) |[Chris Wright](https://twitter.com/jorbascrumps) |
 
 ## Other Projects
 - **[IonPhaser](http://market.ionic.io/plugins/ionphaser)**

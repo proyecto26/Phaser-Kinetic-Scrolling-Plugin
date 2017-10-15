@@ -53,7 +53,8 @@
             verticalScroll: false,
             horizontalWheel: true,
             verticalWheel: false,
-            deltaWheel: 40
+            deltaWheel: 40,
+            onUpdate: null
         };
     };
 
@@ -129,20 +130,37 @@
         var elapsed = this.now - this.timestamp;
         this.timestamp = this.now;
 
+        var deltaX = 0;
+        var deltaY = 0;
+
         if (this.settings.horizontalScroll) {
-            var delta = x - this.startX; //Compute move distance
-            if (delta !== 0) this.dragging = true;
+            deltaX = x - this.startX; //Compute move distance
+            if (deltaX !== 0) this.dragging = true;
             this.startX = x;
-            this.velocityX = 0.8 * (1000 * delta / (1 + elapsed)) + 0.2 * this.velocityX;
-            this.game.camera.x -= delta;
+            this.velocityX = 0.8 * (1000 * deltaX / (1 + elapsed)) + 0.2 * this.velocityX;
+            this.game.camera.x -= deltaX;
         }
 
         if (this.settings.verticalScroll) {
-            var delta = y - this.startY; //Compute move distance
-            if (delta !== 0) this.dragging = true;
+            deltaY = y - this.startY; //Compute move distance
+            if (deltaY !== 0) this.dragging = true;
             this.startY = y;
-            this.velocityY = 0.8 * (1000 * delta / (1 + elapsed)) + 0.2 * this.velocityY;
-            this.game.camera.y -= delta;
+            this.velocityY = 0.8 * (1000 * deltaY / (1 + elapsed)) + 0.2 * this.velocityY;
+            this.game.camera.y -= deltaY;
+        }
+
+        if (typeof this.settings.onUpdate === 'function') {
+            var x = 0;
+            if (this.game.camera.x > 0 && this.game.camera.x + this.game.camera.width < this.game.camera.bounds.right) {
+                x = deltaX;
+            }
+
+            var y = 0;
+            if (this.game.camera.y > 0 && this.game.camera.y + this.game.camera.height < this.game.camera.bounds.height) {
+                y = deltaY;
+            }
+
+            this.settings.onUpdate(x, y);
         }
 
     };
@@ -151,7 +169,7 @@
     * Event triggered when a pointer is released, calculates the automatic scrolling.
     */
     Phaser.Plugin.KineticScrolling.prototype.endMove = function () {
-        
+
         this.pressedDown = false;
         this.autoScrollX = false;
         this.autoScrollY = false;
@@ -222,7 +240,7 @@
         if(!this.autoScrollX && !this.autoScrollY){
             this.dragging = false;
         }
-        
+
         if (this.settings.horizontalWheel  && this.velocityWheelXAbs > 0.1) {
             this.dragging = true;
             this.amplitudeX = 0;
@@ -259,12 +277,30 @@
             this.autoScrollX = false;
 
             this.velocityWheelX += delta;
+
+            if (typeof this.settings.onUpdate === 'function') {
+                var deltaX = 0;
+                if (this.game.camera.x > 0 && this.game.camera.x + this.game.camera.width < this.game.camera.bounds.width) {
+                    deltaX = delta;
+                }
+
+                this.settings.onUpdate(deltaX, 0);
+            }
         }
 
         if (this.settings.verticalWheel) {
             this.autoScrollY = false;
 
             this.velocityWheelY += delta;
+
+            if (typeof this.settings.onUpdate === 'function') {
+                var deltaY = 0;
+                if (this.game.camera.y > 0 && this.game.camera.y + this.game.camera.height < this.game.camera.bounds.height) {
+                    deltaY = delta;
+                }
+
+                this.settings.onUpdate(0, deltaY);
+            }
         }
 
     };
