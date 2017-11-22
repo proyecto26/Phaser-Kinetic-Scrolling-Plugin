@@ -103,11 +103,11 @@ The repository has some examples of the plugin:
 - onUpdate callback to track delta
 
 ## Collaborators
-[<img alt="jdnichollsc" src="https://avatars3.githubusercontent.com/u/2154886?v=3&s=117" width="117">](https://github.com/jdnichollsc) |
 [<img alt="VitaZheltyakov" src="https://avatars3.githubusercontent.com/u/5693437?v=3&s=117" width="117">](https://github.com/VitaZheltyakov) |
 [<img alt="iamchristopher" src="https://avatars2.githubusercontent.com/u/5909516?v=3&s=117" width="117">](https://github.com/iamchristopher) |
+[<img alt="jdnichollsc" src="https://avatars3.githubusercontent.com/u/2154886?v=3&s=117" width="117">](https://github.com/jdnichollsc) |
 :---: |:---: |:---: |
-[Nicholls](mailto:jdnichollsc@hotmail.com) |[Vitaliy](mailto:vita-zhelt@yandex.ru) |[Chris Wright](https://twitter.com/jorbascrumps) |
+[Vitaliy](mailto:vita-zhelt@yandex.ru) |[Chris Wright](https://twitter.com/jorbascrumps) | [Nicholls](mailto:jdnichollsc@hotmail.com) |
 
 ## Other Projects
 - **[IonPhaser](http://market.ionic.io/plugins/ionphaser)**
