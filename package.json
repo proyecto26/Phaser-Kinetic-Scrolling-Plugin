@@ -1,7 +1,7 @@
 {
   "name": "phaser-kinetic-scrolling-plugin",
-  "version": "1.0.4",
-  "release": "V 1.0.4",
+  "version": "1.0.5",
+  "release": "V 1.0.5",
   "description": "Kinetic Scrolling Plugin for Phaser Framework",
   "author": "Juan David Nicholls Cardona <jdnichollsc@hotmail.com>",
   "logo": "https://raw.github.com/jdnichollsc/Phaser-Kinetic-Scrolling-Plugin/gh-pages/img/plugin.png",
@@ -26,7 +26,7 @@
   "license": "MIT",
   "licenseUrl": "http://www.opensource.org/licenses/mit-license.php",
   "dependencies": {
-    "phaser": "^2.0.6" 
+    "phaser-ce": "^2.7.2" 
   },
   "devDependencies": {
     "gulp": "^3.5.6",

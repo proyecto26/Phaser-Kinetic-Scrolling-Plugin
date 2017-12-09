@@ -6,7 +6,7 @@ I wanted to simulate horizontal and vertical scrolling in my games to display le
 
 > Kinetic scrolling based on http://ariya.ofilabs.com/2013/11/javascript-kinetic-scrolling-part-2.html
 
-##Download the Plugin
+## Download the Plugin
 
 [![NPM](https://nodei.co/npm/phaser-kinetic-scrolling-plugin.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/phaser-kinetic-scrolling-plugin/)
 
@@ -18,13 +18,13 @@ Install via [npm](https://www.npmjs.com)
 
 `npm i phaser-kinetic-scrolling-plugin --save`
 
-##Load the Plugin
+## Load the Plugin
 
 ```javascript
 this.game.kineticScrolling = this.game.plugins.add(Phaser.Plugin.KineticScrolling);
 ```
 
-##Change Default Settings of the Plugin - *_It isn't necessary, default is horizontal_*
+## Change Default Settings of the Plugin - *_It isn't necessary, default is horizontal_*
 
 ```javascript
 this.game.kineticScrolling.configure({
@@ -34,23 +34,24 @@ this.game.kineticScrolling.configure({
     verticalScroll: false,
     horizontalWheel: true,
     verticalWheel: false,
-    deltaWheel: 40
+    deltaWheel: 40,
+    onUpdate: null
 });
 ```
 
-##Start the Plugin
+## Start the Plugin
 
 ```javascript
 this.game.kineticScrolling.start();
 ```
 
-##Stop the Plugin
+## Stop the Plugin
 
 ```javascript
 this.game.kineticScrolling.stop();
 ```
 
-##Full Example
+## Full Example
 
 ```javascript
 var game = new Phaser.Game(1024, 768, Phaser.AUTO, '', {
@@ -99,8 +100,25 @@ The repository has some examples of the plugin:
 - Horizontal scrolling with scrollbar
 - Horizontal scrolling and pressing events
 - Horizontal and Vertical scrolling (Mouse wheel too)
+- onUpdate callback to track delta
 
-# Happy scrolling
+## Collaborators
+[<img alt="VitaZheltyakov" src="https://avatars3.githubusercontent.com/u/5693437?v=3&s=117" width="117">](https://github.com/VitaZheltyakov) |
+[<img alt="iamchristopher" src="https://avatars2.githubusercontent.com/u/5909516?v=3&s=117" width="117">](https://github.com/iamchristopher) |
+[<img alt="daaaabeen" src="https://avatars0.githubusercontent.com/u/3760804?s=117&v=3" width="117">](https://github.com/daaaabeen) |
+[<img alt="jdnichollsc" src="https://avatars3.githubusercontent.com/u/2154886?v=3&s=117" width="117">](https://github.com/jdnichollsc) |
+:---: |:---: |:---: |
+[Vitaliy](mailto:vita-zhelt@yandex.ru) |[Chris Wright](https://twitter.com/jorbascrumps) | [Daaaabeen](mailto:dianbin.lee@gmail.com) | [Nicholls](mailto:jdnichollsc@hotmail.com) |
+
+## Other Projects
+- **[IonPhaser](http://market.ionic.io/plugins/ionphaser)**
+- **[Rotate Sprite Extension](https://github.com/jdnichollsc/Phaser-Rotate-Sprite-Extension)**
+
+## Supporting
+I believe in Unicorns 🦄
+Support [me](http://www.paypal.me/jdnichollsc/2), if you do too.
+
+## Happy scrolling
 Made with <3
 
 <img width="150px" src="http://phaser.azurewebsites.net/assets/nicholls.png" align="right">

@@ -3,7 +3,7 @@
  * @author       Juan Nicholls <jdnichollsc@hotmail.com>
  * @copyright    2015 Juan Nicholls - http://jdnichollsc.github.io/Phaser-Kinetic-Scrolling-Plugin/
  * @license      {@link http://opensource.org/licenses/MIT}
- * @version 1.0.4
+ * @version 1.0.5
  */
 
 (function (Phaser) {
@@ -58,7 +58,8 @@
             verticalScroll: false,
             horizontalWheel: true,
             verticalWheel: false,
-            deltaWheel: 40
+            deltaWheel: 40,
+            onUpdate: null
         };
     };
 
@@ -148,37 +149,33 @@
         var elapsed = this.now - this.timestamp;
         this.timestamp = this.now;
 
-        var delta = 0;
-
+        var deltaX = 0;
+        var deltaY = 0;
         // screenDelta without the scale
         var screenDelta = 0;
 
         if (this.settings.horizontalScroll) {
-            // Compute move distance
-            delta = x - this.startX;
-            screenDelta = pointer.screenX - this.screenX;
-
             // It`s a fast tap not move
+            screenDelta = pointer.screenX - this.screenX;
             if (
                 this.now - this.beginTime < this.thresholdOfTapTime
                 && Math.abs(screenDelta) < this.thresholdOfTapDistance
             ) {
                 return;
             }
-            if (delta !== 0) {
+
+            deltaX = x - this.startX;
+            if (deltaX !== 0) {
                 this.dragging = true;
             }
             this.startX = x;
-            this.velocityX = 0.8 * (1000 * delta / (1 + elapsed)) + 0.2 * this.velocityX;
-            this.game.camera.x -= delta;
+            this.velocityX = 0.8 * (1000 * deltaX / (1 + elapsed)) + 0.2 * this.velocityX;
+            this.game.camera.x -= deltaX;
         }
 
         if (this.settings.verticalScroll) {
-            // Compute move distance
-            delta = y - this.startY;
-            screenDelta = pointer.screenY - this.screenY;
-
             // It`s a fast tap not move
+            screenDelta = pointer.screenY - this.screenY;
             if (
                 this.now - this.beginTime < this.thresholdOfTapTime
                 && Math.abs(screenDelta) < this.thresholdOfTapDistance
@@ -186,13 +183,28 @@
                 return;
             }
 
-            if (delta !== 0) {
+            deltaY = y - this.startY;
+            if (deltaY !== 0) {
                 this.dragging = true;
             }
 
             this.startY = y;
-            this.velocityY = 0.8 * (1000 * delta / (1 + elapsed)) + 0.2 * this.velocityY;
-            this.game.camera.y -= delta;
+            this.velocityY = 0.8 * (1000 * deltaY / (1 + elapsed)) + 0.2 * this.velocityY;
+            this.game.camera.y -= deltaY;
+        }
+
+        if (typeof this.settings.onUpdate === 'function') {
+            var updateX = 0;
+            if (this.game.camera.x > 0 && this.game.camera.x + this.game.camera.width < this.game.camera.bounds.right) {
+                updateX = deltaX;
+            }
+
+            var updateY = 0;
+            if (this.game.camera.y > 0 && this.game.camera.y + this.game.camera.height < this.game.camera.bounds.height) {
+                updateY = deltaY;
+            }
+
+            this.settings.onUpdate(updateX, updateY);
         }
 
     };
@@ -317,12 +329,30 @@
             this.autoScrollX = false;
 
             this.velocityWheelX += delta;
+
+            if (typeof this.settings.onUpdate === 'function') {
+                var deltaX = 0;
+                if (this.game.camera.x > 0 && this.game.camera.x + this.game.camera.width < this.game.camera.bounds.width) {
+                    deltaX = delta;
+                }
+
+                this.settings.onUpdate(deltaX, 0);
+            }
         }
 
         if (this.settings.verticalWheel) {
             this.autoScrollY = false;
 
             this.velocityWheelY += delta;
+
+            if (typeof this.settings.onUpdate === 'function') {
+                var deltaY = 0;
+                if (this.game.camera.y > 0 && this.game.camera.y + this.game.camera.height < this.game.camera.bounds.height) {
+                    deltaY = delta;
+                }
+
+                this.settings.onUpdate(0, deltaY);
+            }
         }
 
     };
