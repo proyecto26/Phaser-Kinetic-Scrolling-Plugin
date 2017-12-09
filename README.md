@@ -107,7 +107,7 @@ The repository has some examples of the plugin:
 [<img alt="iamchristopher" src="https://avatars2.githubusercontent.com/u/5909516?v=3&s=117" width="117">](https://github.com/iamchristopher) |
 [<img alt="daaaabeen" src="https://avatars0.githubusercontent.com/u/3760804?s=117&v=3" width="117">](https://github.com/daaaabeen) |
 [<img alt="jdnichollsc" src="https://avatars3.githubusercontent.com/u/2154886?v=3&s=117" width="117">](https://github.com/jdnichollsc) |
-:---: |:---: |:---: |
+:---: |:---: |:---: |:---: |
 [Vitaliy](mailto:vita-zhelt@yandex.ru) |[Chris Wright](https://twitter.com/jorbascrumps) | [Daaaabeen](mailto:dianbin.lee@gmail.com) | [Nicholls](mailto:jdnichollsc@hotmail.com) |
 
 ## Other Projects
