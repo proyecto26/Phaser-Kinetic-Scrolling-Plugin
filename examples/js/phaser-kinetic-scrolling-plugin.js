@@ -151,19 +151,17 @@
 
         var deltaX = 0;
         var deltaY = 0;
-        // screenDelta without the scale
-        var screenDelta = 0;
+
+        // It`s a fast tap not move
+        if (
+            this.now - this.beginTime < this.thresholdOfTapTime
+            && Math.abs(pointer.screenY - this.screenY) < this.thresholdOfTapDistance
+            && Math.abs(pointer.screenX - this.screenX) < this.thresholdOfTapDistance
+        ) {
+            return;
+        }
 
         if (this.settings.horizontalScroll) {
-            // It`s a fast tap not move
-            screenDelta = pointer.screenX - this.screenX;
-            if (
-                this.now - this.beginTime < this.thresholdOfTapTime
-                && Math.abs(screenDelta) < this.thresholdOfTapDistance
-            ) {
-                return;
-            }
-
             deltaX = x - this.startX;
             if (deltaX !== 0) {
                 this.dragging = true;
@@ -174,20 +172,10 @@
         }
 
         if (this.settings.verticalScroll) {
-            // It`s a fast tap not move
-            screenDelta = pointer.screenY - this.screenY;
-            if (
-                this.now - this.beginTime < this.thresholdOfTapTime
-                && Math.abs(screenDelta) < this.thresholdOfTapDistance
-            ) {
-                return;
-            }
-
             deltaY = y - this.startY;
             if (deltaY !== 0) {
                 this.dragging = true;
             }
-
             this.startY = y;
             this.velocityY = 0.8 * (1000 * deltaY / (1 + elapsed)) + 0.2 * this.velocityY;
             this.game.camera.y -= deltaY;
