@@ -5,6 +5,7 @@ var game = new Phaser.Game(1024, 768, Phaser.AUTO, 'phaser-example', {
         this.game.kineticScrolling = this.game.plugins.add(Phaser.Plugin.KineticScrolling);
 
         //If you want change the default configuration before start the plugin
+
         this.game.kineticScrolling.configure({
             onUpdate: function (x, y) {
                 console.log('x', x, 'y', y);
@@ -45,6 +46,7 @@ var game = new Phaser.Game(1024, 768, Phaser.AUTO, 'phaser-example', {
         sprite.beginFill(Phaser.Color.getRandomColor(100, 255), 1);
         sprite.bounds = new PIXI.Rectangle(0, 0, w, h);
         sprite.drawRect(0, 0, w, h);
+
         // Adding processing of clicking on the box
         sprite.inputEnabled = true;
         sprite.events.onInputDown.add(function(e) {
