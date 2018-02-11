@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #content {
+            margin: 2em auto;
+            max-width: 960px;
+            overflow: hidden; /* hide the menu */
+            position: relative;
+        }
+        #examples {
+            margin: 1.5em 0;
+            transition: all 500ms ease-in;
+        }
+
+        #examples.resize {
+            padding-right: 32%;
+        }
+
+        #examples.resize ul li {
+            width: 48%;
+        }
+
+        #examples ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            overflow: hidden;
+        }
+
+        #examples li {
+            float: left;
+            width: 31%;
+            display: block;
+            margin: 0 1% 1em 1%;
+            transition: all 500ms ease-in;
+        }
+
+        #examples figure {
+            margin: 0;
+            width: 100%;
+        }
+
+        #examples figure img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        #examples li figcaption {
+            margin: 0;
+            padding: 0.3em;
+            background: #000;
+            color: #fff;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <h1>Demos (Created by the Community)</h1>
+        <div id="examples">
+			<ul>
+				<li class="example">
+                    <a href="example_1.html">
+                        <figure>
+                            <fieldset>
+                                <p>Horizontal scrolling</p>
+                            </fieldset>
+                            <figcaption>example 1</figcaption>
+                        </figure>
+                    </a>
+				</li>
+				<li class="example">
+                    <a href="example_2.html">
+                        <figure>
+                            <fieldset>
+                                <p>Horizontal scrolling with scrollbar</p>
+                            </fieldset>
+                            <figcaption>example 2</figcaption>
+                        </figure>
+                    </a>
+				</li>
+				<li class="example">
+                    <a href="example_3.html">
+                        <figure>
+                            <fieldset>
+                                <p>Horizontal scrolling and pressing events</p>
+                            </fieldset>
+                            <figcaption>example 3</figcaption>
+                        </figure>
+                    </a>
+				</li>
+				<li class="example">
+                    <a href="example_4.html">
+                        <figure>
+                            <fieldset>
+                                <p>Horizontal and Vertical scrolling (Mouse wheel too)</p>
+                            </fieldset>
+                            <figcaption>example 4</figcaption>
+                        </figure>
+                    </a>
+				</li>
+				<li class="example">
+                    <a href="example_5.html">
+                        <figure>
+                            <fieldset>
+                                <p>onUpdate callback to track delta (Check console log)</p>
+                            </fieldset>
+                            <figcaption>example 5</figcaption>
+                        </figure>
+                    </a>
+				</li>
+			</ul>
+
+		</div>
+	</div>	
+</body>
+</html>
