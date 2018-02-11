@@ -1,9 +1,9 @@
 /**
  * Phaser Kinetic Scrolling Plugin
  * @author       Juan Nicholls <jdnichollsc@hotmail.com>
- * @copyright    2015 Juan Nicholls - http://jdnichollsc.github.io/Phaser-Kinetic-Scrolling-Plugin/
+ * @copyright    2018 Juan Nicholls - http://jdnichollsc.github.io/Phaser-Kinetic-Scrolling-Plugin/
  * @license      {@link http://opensource.org/licenses/MIT}
- * @version 1.0.5
+ * @version 1.0.6
  */
 
 (function (Phaser) {

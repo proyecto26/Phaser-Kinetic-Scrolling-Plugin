@@ -47,14 +47,14 @@ var game = new Phaser.Game(1024, 768, Phaser.AUTO, 'phaser-example', {
             if (typeof e.timerInputDown !== "undefined") clearTimeout(e.timerInputDown);
             e.timerInputDown = window.setTimeout(function(e) {
                // Checks scroll
-               if (!this.game.kineticScrolling.dragging) game.add.tween(e).to({ alpha: 0.3 }, 300, Phaser.Easing.Linear.None, true);
-            }, 1000, e);
+               if (!this.game.kineticScrolling.dragging) game.add.tween(e).to({ alpha: 0, y: '-100' }, 300, Phaser.Easing.Linear.None, true);
+            }, 200, e);
         }, this);
         sprite.events.onInputUp.add(function(e) {
             if (typeof e.timerInputUp !== "undefined") clearTimeout(e.timerInputUp);
             e.timerInputUp = window.setTimeout(function(e) {
-               if (!this.game.kineticScrolling.dragging) game.add.tween(e).to({ alpha: 1 }, 300, Phaser.Easing.Linear.None, true);
-            }, 1000, e);
+               if (!this.game.kineticScrolling.dragging) game.add.tween(e).to({ alpha: 1, y: y }, 300, Phaser.Easing.Linear.None, true);
+            }, 200, e);
         }, this);
 
         return sprite;

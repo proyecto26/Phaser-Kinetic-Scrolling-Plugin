@@ -2,7 +2,7 @@
 
 ![Kinetic Scrolling Plugin](https://raw.githubusercontent.com/jdnichollsc/Phaser-Kinetic-Scrolling-Plugin/gh-pages/img/plugin.png)
 
-I wanted to simulate horizontal and vertical scrolling in my games to display levels or a section of authors using only the canvas element in HTML5, but I couldn't find a good solution... so I decided to create my own plugin to Phaser Framework :D
+The vertical and horizontal scrolling is very useful feature in the games for example to display a section of levels and with this plugin you can simulate the scrolling within a **canvas** element of **HTML5**... so check this awesome plugin to **Phaser Framework**!
 
 > Kinetic scrolling based on http://ariya.ofilabs.com/2013/11/javascript-kinetic-scrolling-part-2.html
 
@@ -35,7 +35,7 @@ this.game.kineticScrolling.configure({
     horizontalWheel: true,
     verticalWheel: false,
     deltaWheel: 40,
-    onUpdate: null
+    onUpdate: null //A function to get the delta values if it's required (deltaX, deltaY)
 });
 ```
 
@@ -95,7 +95,7 @@ var game = new Phaser.Game(1024, 768, Phaser.AUTO, '', {
 ```
 
 ## Examples
-The repository has some examples of the plugin:
+The repository has some examples of the plugin, to run the examples created by the community execute the command `gulp examples` from the terminal:
 - Horizontal scrolling
 - Horizontal scrolling with scrollbar
 - Horizontal scrolling and pressing events
@@ -108,7 +108,7 @@ The repository has some examples of the plugin:
 [<img alt="daaaabeen" src="https://avatars0.githubusercontent.com/u/3760804?s=117&v=3" width="117">](https://github.com/daaaabeen) |
 [<img alt="jdnichollsc" src="https://avatars3.githubusercontent.com/u/2154886?v=3&s=117" width="117">](https://github.com/jdnichollsc) |
 :---: |:---: |:---: |:---: |
-[Vitaliy](mailto:vita-zhelt@yandex.ru) |[Chris Wright](https://twitter.com/jorbascrumps) | [Daaaabeen](mailto:dianbin.lee@gmail.com) | [Nicholls](mailto:jdnichollsc@hotmail.com) |
+[Vitaliy](mailto:vita-zhelt@yandex.ru) | [Chris Wright](https://twitter.com/jorbascrumps) | [Daaaabeen](mailto:dianbin.lee@gmail.com) | [Nicholls](mailto:jdnichollsc@hotmail.com) |
 
 ## Other Projects
 - **[IonPhaser](http://market.ionic.io/plugins/ionphaser)**
