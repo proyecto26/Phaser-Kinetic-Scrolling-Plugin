@@ -2,7 +2,7 @@
 
 ![Kinetic Scrolling Plugin](https://raw.githubusercontent.com/jdnichollsc/Phaser-Kinetic-Scrolling-Plugin/gh-pages/img/plugin.png)
 
-The vertical and horizontal scrolling is a very useful feature in the games for example to display a section of levels and with this plugin you can simulate the scrolling within a **canvas** element of **HTML5**... so check this awesome plugin to **Phaser Framework**!
+The vertical and horizontal scrolling is a very useful feature in the games for example to display a section of levels and with this plugin you can simulate the scrolling within a **canvas** element of **HTML5**... so check this awesome plugin for **Phaser Framework**!
 
 > Kinetic scrolling based on http://ariya.ofilabs.com/2013/11/javascript-kinetic-scrolling-part-2.html
 
