@@ -183,18 +183,34 @@
 
         if (typeof this.settings.onUpdate === 'function') {
             var updateX = 0;
-            if (this.game.camera.x > 0 && this.game.camera.x + this.game.camera.width < this.game.camera.bounds.right) {
+            if (this.canCameraMoveX()) {
                 updateX = deltaX;
             }
 
             var updateY = 0;
-            if (this.game.camera.y > 0 && this.game.camera.y + this.game.camera.height < this.game.camera.bounds.height) {
+            if (this.canCameraMoveY()) {
                 updateY = deltaY;
             }
 
             this.settings.onUpdate(updateX, updateY);
         }
 
+    };
+
+    /**
+     * Indicates when camera can move in the x axis
+     * @return {boolean}
+     */
+    Phaser.Plugin.KineticScrolling.prototype.canCameraMoveX = function () {
+        return this.game.camera.x > 0 && this.game.camera.x + this.game.camera.width < this.game.camera.bounds.right;
+    };
+
+    /**
+     * Indicates when camera can move in the y axis
+     * @return {boolean}
+     */
+    Phaser.Plugin.KineticScrolling.prototype.canCameraMoveY = function () {
+        return this.game.camera.y > 0 && this.game.camera.y + this.game.camera.height < this.game.camera.bounds.height;
     };
 
     /**
@@ -256,7 +272,7 @@
         if (this.autoScrollX && this.amplitudeX != 0) {
 
             delta = -this.amplitudeX * Math.exp(-this.elapsed / this.settings.timeConstantScroll);
-            if (delta > 0.5 || delta < -0.5) {
+            if (this.canCameraMoveX() && (delta > 0.5 || delta < -0.5)) {
                 this.game.camera.x = this.targetX - delta;
             }
             else {
@@ -268,7 +284,7 @@
         if (this.autoScrollY && this.amplitudeY != 0) {
 
             delta = -this.amplitudeY * Math.exp(-this.elapsed / this.settings.timeConstantScroll);
-            if (delta > 0.5 || delta < -0.5) {
+            if (this.canCameraMoveY() && (delta > 0.5 || delta < -0.5)) {
                 this.game.camera.y = this.targetY - delta;
             }
             else {
