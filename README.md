@@ -103,7 +103,7 @@ The repository has some examples of the plugin, to run the examples created by t
 - onUpdate callback to track delta
 
 ## Collaborators
-[<img alt="VitaZheltyakov" src="https://avatars1.githubusercontent.com/u/4193707?s=117&v=4" width="117">](https://github.com/daniel-mf) |
+[<img alt="daniel-mf" src="https://avatars1.githubusercontent.com/u/4193707?s=117&v=4" width="117">](https://github.com/daniel-mf) |
 [<img alt="VitaZheltyakov" src="https://avatars3.githubusercontent.com/u/5693437?v=3&s=117" width="117">](https://github.com/VitaZheltyakov) |
 [<img alt="iamchristopher" src="https://avatars2.githubusercontent.com/u/5909516?v=3&s=117" width="117">](https://github.com/iamchristopher) |
 [<img alt="daaaabeen" src="https://avatars0.githubusercontent.com/u/3760804?s=117&v=3" width="117">](https://github.com/daaaabeen) |
