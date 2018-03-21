@@ -51,6 +51,9 @@
         this.thresholdOfTapTime = 100;
         this.thresholdOfTapDistance = 10;
 
+        // for a smoother scrolling start
+        this.thresholdReached = false;
+
         this.settings = {
             kineticMovement: true,
             timeConstantScroll: 325, //really mimic iOS
@@ -161,6 +164,13 @@
             return;
         }
 
+        if(!this.thresholdReached){
+            this.thresholdReached = true;
+            this.startX = x;
+            this.startY = y;
+            return;
+        }
+
         if (this.settings.horizontalScroll) {
             deltaX = x - this.startX;
             if (deltaX !== 0) {
@@ -222,6 +232,7 @@
         this.pressedDown = false;
         this.autoScrollX = false;
         this.autoScrollY = false;
+        this.thresholdReached = false;
 
         if (!this.settings.kineticMovement) return;
 
