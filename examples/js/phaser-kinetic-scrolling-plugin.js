@@ -265,7 +265,7 @@
                     obj.kineticScrollingClickHelpers.click && obj.kineticScrollingClickHelpers.click(obj);
                     obj.kineticScrollingClickHelpers.inputIsDown = false;
 
-                } else if (obj.kineticScrollingClickHelpers.downTimer) {
+                } else if (obj.kineticScrollingClickHelpers.downTimer && !this.thresholdReached) {
                     //It was a perfect tap, so we trigger all the events at once
                     clearTimeout(obj.kineticScrollingClickHelpers.downTimer);
                     obj.kineticScrollingClickHelpers.down && obj.kineticScrollingClickHelpers.down(obj);
