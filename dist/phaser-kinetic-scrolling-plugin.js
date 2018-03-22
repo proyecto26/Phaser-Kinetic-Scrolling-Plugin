@@ -141,7 +141,7 @@
     */
     Phaser.Plugin.KineticScrolling.prototype.moveCamera = function (pointer, x, y) {
 
-        clearTimeout(this.clearMomementTimer);
+        clearTimeout(this.clearMovementTimer);
 
         if (!this.pressedDown) {
             return;
@@ -210,7 +210,7 @@
             this.settings.onUpdate(updateX, updateY);
         }
 
-        this.clearMomementTimer = setTimeout(function () {
+        this.clearMovementTimer = setTimeout(function () {
             this.velocityX = 0;
             this.velocityY = 0;
         }.bind(this), 20);
@@ -301,7 +301,7 @@
     */
     Phaser.Plugin.KineticScrolling.prototype.endMove = function () {
 
-        clearTimeout(this.clearMomementTimer);
+        clearTimeout(this.clearMovementTimer);
 
         this.pointerId = null;
         this.pressedDown = false;
