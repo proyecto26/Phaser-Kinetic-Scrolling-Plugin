@@ -125,6 +125,7 @@
         this.screenY = pointer.screenY;
 
         this.pressedDown = true;
+        this.thresholdReached = false;
 
         this.timestamp = Date.now();
 
@@ -301,7 +302,6 @@
         this.pressedDown = false;
         this.autoScrollX = false;
         this.autoScrollY = false;
-        this.thresholdReached = false;
 
         if (!this.settings.kineticMovement) return;
 
