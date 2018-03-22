@@ -251,9 +251,7 @@
                     if (!this.thresholdReached) {
                         this.clickHelperActiveObjects.push(obj);
                         obj.kineticScrollingClickHelpers.inputIsDown = true;
-                        if (obj.kineticScrollingClickHelpers.down) {
-                            obj.kineticScrollingClickHelpers.down(obj);
-                        }
+                        obj.kineticScrollingClickHelpers.down && obj.kineticScrollingClickHelpers.down(obj);
                     }
                 }.bind(this), this.thresholdOfTapTime + 10);
             }, this);
@@ -263,20 +261,16 @@
                 this.clickHelperActiveObjects.splice(this.clickHelperActiveObjects.indexOf(obj));
 
                 if (obj.kineticScrollingClickHelpers.inputIsDown) {
-                    if (obj.kineticScrollingClickHelpers.up) {
-                        obj.kineticScrollingClickHelpers.up(obj);
-                    }
-                    if (obj.kineticScrollingClickHelpers.click) {
-                        obj.kineticScrollingClickHelpers.click(obj);
-                    }
+                    obj.kineticScrollingClickHelpers.up && obj.kineticScrollingClickHelpers.up(obj);
+                    obj.kineticScrollingClickHelpers.click && obj.kineticScrollingClickHelpers.click(obj);
                     obj.kineticScrollingClickHelpers.inputIsDown = false;
 
                 } else if (obj.kineticScrollingClickHelpers.downTimer) {
                     //It was a perfect tap, so we trigger all the events at once
                     clearTimeout(obj.kineticScrollingClickHelpers.downTimer);
-                    obj.kineticScrollingClickHelpers.down(obj);
-                    obj.kineticScrollingClickHelpers.up(obj);
-                    obj.kineticScrollingClickHelpers.click(obj);
+                    obj.kineticScrollingClickHelpers.down && obj.kineticScrollingClickHelpers.down(obj);
+                    obj.kineticScrollingClickHelpers.up && obj.kineticScrollingClickHelpers.up(obj);
+                    obj.kineticScrollingClickHelpers.click && obj.kineticScrollingClickHelpers.click(obj);
                 }
             }.bind(this));
 
@@ -292,7 +286,7 @@
     Phaser.Plugin.KineticScrolling.prototype.cancelClickEventHelpers = function () {
         this.clickHelperActiveObjects.forEach(function (obj) {
             obj.kineticScrollingClickHelpers.inputIsDown = false;
-            obj.kineticScrollingClickHelpers.up();
+            obj.kineticScrollingClickHelpers.up && obj.kineticScrollingClickHelpers.up();
         });
     };
 
