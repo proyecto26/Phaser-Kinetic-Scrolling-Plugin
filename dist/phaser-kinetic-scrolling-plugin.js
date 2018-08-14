@@ -3,7 +3,7 @@
  * @author       Juan Nicholls <jdnichollsc@hotmail.com>
  * @copyright    2018 Juan Nicholls - http://jdnichollsc.github.io/Phaser-Kinetic-Scrolling-Plugin/
  * @license      {@link http://opensource.org/licenses/MIT}
- * @version 1.0.8
+ * @version 1.1.2
  */
 
 (function (Phaser) {
@@ -162,7 +162,7 @@
 
         // It`s a fast tap not move
         if (
-            this.now - this.beginTime < this.thresholdOfTapTime
+            this.isTap()
             && Math.abs(pointer.screenY - this.screenY) < this.thresholdOfTapDistance
             && Math.abs(pointer.screenX - this.screenX) < this.thresholdOfTapDistance
         ) {
@@ -219,6 +219,14 @@
     };
 
     /**
+    * Validate if the gesture is a tap
+    * @return {boolean}
+    */
+    Phaser.Plugin.KineticScrolling.prototype.isTap = function () {
+        return (this.now - this.beginTime) < this.thresholdOfTapTime;
+    };
+
+    /**
     * Indicates when camera can move in the x axis
     * @return {boolean}
     */
@@ -263,9 +271,8 @@
 
                 if (obj.kineticScrollingClickHelpers.inputIsDown) {
                     obj.kineticScrollingClickHelpers.up && obj.kineticScrollingClickHelpers.up(obj);
-                    obj.kineticScrollingClickHelpers.click && obj.kineticScrollingClickHelpers.click(obj);
+                    this.isTap() && obj.kineticScrollingClickHelpers.click && obj.kineticScrollingClickHelpers.click(obj);
                     obj.kineticScrollingClickHelpers.inputIsDown = false;
-
                 } else if (obj.kineticScrollingClickHelpers.downTimer && !this.thresholdReached) {
                     //It was a perfect tap, so we trigger all the events at once
                     clearTimeout(obj.kineticScrollingClickHelpers.downTimer);
@@ -286,8 +293,11 @@
 
     Phaser.Plugin.KineticScrolling.prototype.cancelClickEventHelpers = function () {
         this.clickHelperActiveObjects.forEach(function (obj) {
+            var inputIsDown = obj.kineticScrollingClickHelpers.inputIsDown;
             obj.kineticScrollingClickHelpers.inputIsDown = false;
-            obj.kineticScrollingClickHelpers.up && obj.kineticScrollingClickHelpers.up();
+            if (inputIsDown && obj.kineticScrollingClickHelpers.up) {
+                obj.kineticScrollingClickHelpers.up();
+            }
         });
     };
 

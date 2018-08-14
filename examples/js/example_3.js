@@ -43,16 +43,15 @@ var game = new Phaser.Game(1024, 768, Phaser.AUTO, 'phaser-example', {
 
         this.game.kineticScrolling.addClickEvents(sprite, {
             down: function () {
-                console.log('down!');
+                console.log('DOWN!');
                 game.add.tween(sprite).to({ alpha: .5, y: '-10' }, 300, Phaser.Easing.Linear.None, true);
             },
             up: function(){
-                console.log('up!');
+                console.log('UP!');
                 game.add.tween(sprite).to({ alpha: 1, y: y}, 300, Phaser.Easing.Linear.None, true);
             },
             click: function () {
-                console.log('click!');
-                game.add.tween(sprite).to({ alpha: 0, y: '100' }, 300, Phaser.Easing.Linear.None, true);
+                console.log('CLICK!');
             }
         });
 
