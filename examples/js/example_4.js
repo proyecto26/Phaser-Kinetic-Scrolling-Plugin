@@ -43,7 +43,7 @@ var kinematicHVGameState = {
         this.tv.cameraOffset.setTo(this.game.width / 2, this.game.height / 2);
 
 		this.game.load.crossOrigin = 'anonymous';
-        this.game.load.image('zelda', 'http://jdnichollsc.github.io/Phaser-Kinetic-Scrolling-Plugin/img/zelda.png');
+        this.game.load.image('zelda', 'img/zelda.png');
         this.game.load.image('scroll', scrollUri);
 
     },
