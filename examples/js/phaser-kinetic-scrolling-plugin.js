@@ -3,7 +3,7 @@
  * @author       Juan Nicholls <jdnichollsc@hotmail.com>
  * @copyright    2018 Juan Nicholls - http://jdnichollsc.github.io/Phaser-Kinetic-Scrolling-Plugin/
  * @license      {@link http://opensource.org/licenses/MIT}
- * @version 1.1.2
+ * @version 1.2.0
  */
 
 (function (Phaser) {
@@ -64,7 +64,8 @@
             horizontalWheel: true,
             verticalWheel: false,
             deltaWheel: 40,
-            onUpdate: null
+            onUpdate: null,
+            button: ""
         };
     };
 
@@ -83,6 +84,7 @@
     * @param {boolean} [options.horizontalWheel=true]   - Enable or Disable the horizontal scrolling with mouse wheel.
     * @param {boolean} [options.verticalWheel=false]    - Enable or Disable the vertical scrolling with mouse wheel.
     * @param {number}  [options.deltaWheel=40]          - Delta increment of the mouse wheel.
+    * @param {string}  [options.button=""]              - Phaser button code to start drag (LEFT_BUTTON, RIGHT_BUTTON, etc).
     */
     Phaser.Plugin.KineticScrolling.prototype.configure = function (options) {
 
@@ -116,7 +118,11 @@
     * Event triggered when a pointer is pressed down, resets the value of variables.
     */
     Phaser.Plugin.KineticScrolling.prototype.beginMove = function (pointer) {
-
+      
+        if (this.settings.button && pointer.button !== Phaser.Mouse[this.settings.button]) {
+            return;
+        }
+      
         this.pointerId = pointer.id;
         this.startX = this.game.input.x;
         this.startY = this.game.input.y;

@@ -44,7 +44,7 @@ var game = new Phaser.Game(1024, 768, Phaser.AUTO, 'phaser-example', {
         this.game.kineticScrolling.addClickEvents(sprite, {
             down: function () {
                 console.log('DOWN!');
-                game.add.tween(sprite).to({ alpha: .5, y: '-10' }, 300, Phaser.Easing.Linear.None, true);
+                game.add.tween(sprite).to({ alpha: .5, y: '-30' }, 300, Phaser.Easing.Linear.None, true);
             },
             up: function(){
                 console.log('UP!');

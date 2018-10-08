@@ -38,6 +38,11 @@ declare module Phaser {
              * Delta increment of the mouse wheel.
              */
             deltaWheel?: number;
+
+            /**
+             * A function to get the delta values if it's required (deltaX, deltaY).
+             */
+            onUpdate?: Function
         }
 
         /**

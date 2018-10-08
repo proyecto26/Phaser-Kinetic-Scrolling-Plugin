@@ -8,7 +8,7 @@ var game = new Phaser.Game(1024, 768, Phaser.AUTO, 'phaser-example', {
 
         this.game.kineticScrolling.configure({
             onUpdate: function (x, y) {
-                console.log('x', x, 'y', y);
+                console.log('x=' + x + ', y='+ y);
             }
         })
     },
