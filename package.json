@@ -1,7 +1,7 @@
 {
   "name": "phaser-kinetic-scrolling-plugin",
-  "version": "1.0.4",
-  "release": "V 1.0.4",
+  "version": "1.1.2",
+  "release": "V 1.1.2",
   "description": "Kinetic Scrolling Plugin for Phaser Framework",
   "author": "Juan David Nicholls Cardona <jdnichollsc@hotmail.com>",
   "logo": "https://raw.github.com/jdnichollsc/Phaser-Kinetic-Scrolling-Plugin/gh-pages/img/plugin.png",
@@ -15,7 +15,7 @@
     "mousewheel",
     "kinetic"
   ],
-  "homepage": "http://jdnichollsc.github.io/Phaser-Kinetic-Scrolling-Plugin/",  
+  "homepage": "http://jdnichollsc.github.io/Phaser-Kinetic-Scrolling-Plugin/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jdnichollsc/Phaser-Kinetic-Scrolling-Plugin.git"
@@ -26,12 +26,14 @@
   "license": "MIT",
   "licenseUrl": "http://www.opensource.org/licenses/mit-license.php",
   "dependencies": {
-    "phaser": "^2.0.6" 
+    "phaser-ce": "^2.8.8"
   },
   "devDependencies": {
     "gulp": "^3.5.6",
     "gulp-concat": "^2.2.0",
+    "gulp-connect": "^5.0.0",
     "gulp-rename": "^1.2.2",
-    "gulp-uglify": "^1.2.0"
+    "gulp-uglify": "^1.2.0",
+    "gulp-open": "^2.0.0"
   }
 }

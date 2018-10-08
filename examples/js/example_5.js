@@ -5,6 +5,12 @@ var game = new Phaser.Game(1024, 768, Phaser.AUTO, 'phaser-example', {
         this.game.kineticScrolling = this.game.plugins.add(Phaser.Plugin.KineticScrolling);
 
         //If you want change the default configuration before start the plugin
+
+        this.game.kineticScrolling.configure({
+            onUpdate: function (x, y) {
+                console.log('x', x, 'y', y);
+            }
+        })
     },
     create: function () {
 
@@ -13,9 +19,9 @@ var game = new Phaser.Game(1024, 768, Phaser.AUTO, 'phaser-example', {
 
         //If you want change the default configuration after start the plugin
 
-        this.info = this.game.add.text(game.world.width*0.01, game.world.height*0.01, "Horizontal scroll and input events", { 
-            font: "22px Arial", 
-            fill: "#ffffff" 
+        this.info = this.game.add.text(game.world.width*0.01, game.world.height*0.01, "onUpdate callback to track delta", {
+            font: "22px Arial",
+            fill: "#ffffff"
         });
         this.info.fixedToCamera = true;
 
@@ -40,20 +46,6 @@ var game = new Phaser.Game(1024, 768, Phaser.AUTO, 'phaser-example', {
         sprite.beginFill(Phaser.Color.getRandomColor(100, 255), 1);
         sprite.bounds = new PIXI.Rectangle(0, 0, w, h);
         sprite.drawRect(0, 0, w, h);
-
-        this.game.kineticScrolling.addClickEvents(sprite, {
-            down: function () {
-                console.log('DOWN!');
-                game.add.tween(sprite).to({ alpha: .5, y: '-10' }, 300, Phaser.Easing.Linear.None, true);
-            },
-            up: function(){
-                console.log('UP!');
-                game.add.tween(sprite).to({ alpha: 1, y: y}, 300, Phaser.Easing.Linear.None, true);
-            },
-            click: function () {
-                console.log('CLICK!');
-            }
-        });
 
         return sprite;
     }

@@ -1,9 +1,9 @@
 /**
  * Phaser Kinetic Scrolling Plugin
  * @author       Juan Nicholls <jdnichollsc@hotmail.com>
- * @copyright    2015 Juan Nicholls - http://jdnichollsc.github.io/Phaser-Kinetic-Scrolling-Plugin/
+ * @copyright    2018 Juan Nicholls - http://jdnichollsc.github.io/Phaser-Kinetic-Scrolling-Plugin/
  * @license      {@link http://opensource.org/licenses/MIT}
- * @version 1.0.4
+ * @version 1.1.2
  */
 
 (function (Phaser) {
@@ -21,6 +21,7 @@
     Phaser.Plugin.KineticScrolling = function (game, parent) {
         Phaser.Plugin.call(this, game, parent);
 
+        this.pointerId = null;
         this.dragging = false;
         this.pressedDown = false;
         this.timestamp = 0;
@@ -46,6 +47,15 @@
         this.velocityWheelX = 0;
         this.velocityWheelY = 0;
 
+        // if less than the two values is a Tap
+        this.thresholdOfTapTime = 100;
+        this.thresholdOfTapDistance = 10;
+
+        // for a smoother scrolling start
+        this.thresholdReached = false;
+
+        this.clickHelperActiveObjects = [];
+
         this.settings = {
             kineticMovement: true,
             timeConstantScroll: 325, //really mimic iOS
@@ -54,7 +64,8 @@
             horizontalWheel: true,
             verticalWheel: false,
             deltaWheel: 40,
-			button: "",
+            onUpdate: null,
+            button: ""
         };
     };
 
@@ -106,18 +117,26 @@
     /**
     * Event triggered when a pointer is pressed down, resets the value of variables.
     */
-    Phaser.Plugin.KineticScrolling.prototype.beginMove = function (context, pointer) {
-
+    Phaser.Plugin.KineticScrolling.prototype.beginMove = function (pointer) {
+      
         if (this.settings.button && pointer.button !== Phaser.Mouse[this.settings.button]) {
             return;
         }
-
+      
+        this.pointerId = pointer.id;
         this.startX = this.game.input.x;
         this.startY = this.game.input.y;
 
+        this.screenX = pointer.screenX;
+        this.screenY = pointer.screenY;
+
         this.pressedDown = true;
+        this.thresholdReached = false;
 
         this.timestamp = Date.now();
+
+        // the time of press down
+        this.beginTime = this.timestamp;
 
         this.velocityY = this.amplitudeY = this.velocityX = this.amplitudeX = 0;
 
@@ -129,28 +148,163 @@
     */
     Phaser.Plugin.KineticScrolling.prototype.moveCamera = function (pointer, x, y) {
 
-        if (!this.pressedDown) return;
+        clearTimeout(this.clearMovementTimer);
+
+        if (!this.pressedDown) {
+            return;
+        }
+
+        // If it is not the current pointer
+        if (this.pointerId !== pointer.id) {
+            return;
+        }
 
         this.now = Date.now();
         var elapsed = this.now - this.timestamp;
         this.timestamp = this.now;
 
-        if (this.settings.horizontalScroll) {
-            var delta = x - this.startX; //Compute move distance
-            if (delta !== 0) this.dragging = true;
+        var deltaX = 0;
+        var deltaY = 0;
+
+        // It`s a fast tap not move
+        if (
+            this.isTap()
+            && Math.abs(pointer.screenY - this.screenY) < this.thresholdOfTapDistance
+            && Math.abs(pointer.screenX - this.screenX) < this.thresholdOfTapDistance
+        ) {
+            return;
+        }
+
+        if (!this.thresholdReached) {
+            this.thresholdReached = true;
             this.startX = x;
-            this.velocityX = 0.8 * (1000 * delta / (1 + elapsed)) + 0.2 * this.velocityX;
-            this.game.camera.x -= delta;
+            this.startY = y;
+            this.cancelClickEventHelpers();
+            return;
+        }
+
+        if (this.settings.horizontalScroll) {
+            deltaX = x - this.startX;
+            if (deltaX !== 0) {
+                this.dragging = true;
+            }
+            this.startX = x;
+            this.velocityX = 0.8 * (1000 * deltaX / (1 + elapsed)) + 0.2 * this.velocityX;
+            this.game.camera.x -= deltaX;
         }
 
         if (this.settings.verticalScroll) {
-            var delta = y - this.startY; //Compute move distance
-            if (delta !== 0) this.dragging = true;
+            deltaY = y - this.startY;
+            if (deltaY !== 0) {
+                this.dragging = true;
+            }
             this.startY = y;
-            this.velocityY = 0.8 * (1000 * delta / (1 + elapsed)) + 0.2 * this.velocityY;
-            this.game.camera.y -= delta;
+            this.velocityY = 0.8 * (1000 * deltaY / (1 + elapsed)) + 0.2 * this.velocityY;
+            this.game.camera.y -= deltaY;
         }
 
+        if (typeof this.settings.onUpdate === 'function') {
+            var updateX = 0;
+            if (this.canCameraMoveX()) {
+                updateX = deltaX;
+            }
+
+            var updateY = 0;
+            if (this.canCameraMoveY()) {
+                updateY = deltaY;
+            }
+
+            this.settings.onUpdate(updateX, updateY);
+        }
+
+        this.clearMovementTimer = setTimeout(function () {
+            this.velocityX = 0;
+            this.velocityY = 0;
+        }.bind(this), 20);
+
+    };
+
+    /**
+    * Validate if the gesture is a tap
+    * @return {boolean}
+    */
+    Phaser.Plugin.KineticScrolling.prototype.isTap = function () {
+        return (this.now - this.beginTime) < this.thresholdOfTapTime;
+    };
+
+    /**
+    * Indicates when camera can move in the x axis
+    * @return {boolean}
+    */
+    Phaser.Plugin.KineticScrolling.prototype.canCameraMoveX = function () {
+        return this.game.camera.x > 0 && this.game.camera.x + this.game.camera.width < this.game.camera.bounds.right;
+    };
+
+    /**
+    * Indicates when camera can move in the y axis
+    * @return {boolean}
+    */
+    Phaser.Plugin.KineticScrolling.prototype.canCameraMoveY = function () {
+        return this.game.camera.y > 0 && this.game.camera.y + this.game.camera.height < this.game.camera.bounds.height;
+    };
+
+    /**
+    * Adds click event helpers
+    * @return {boolean}
+    */
+    Phaser.Plugin.KineticScrolling.prototype.addClickEvents = function (obj, events) {
+        if (!obj.kineticScrollingClickHelpers) {
+
+            obj.kineticScrollingClickHelpers = events;
+            obj.inputEnabled = true;
+
+            obj.kineticScrollingClickHelpers.inputIsDown = false;
+
+            obj.events.onInputDown.add(function () {
+                obj.kineticScrollingClickHelpers.downTimer = setTimeout(function () {
+                    obj.kineticScrollingClickHelpers.downTimer = null;
+                    if (!this.thresholdReached) {
+                        this.clickHelperActiveObjects.push(obj);
+                        obj.kineticScrollingClickHelpers.inputIsDown = true;
+                        obj.kineticScrollingClickHelpers.down && obj.kineticScrollingClickHelpers.down(obj);
+                    }
+                }.bind(this), this.thresholdOfTapTime + 10);
+            }, this);
+
+            obj.events.onInputUp.add(function () {
+
+                this.clickHelperActiveObjects.splice(this.clickHelperActiveObjects.indexOf(obj));
+
+                if (obj.kineticScrollingClickHelpers.inputIsDown) {
+                    obj.kineticScrollingClickHelpers.up && obj.kineticScrollingClickHelpers.up(obj);
+                    this.isTap() && obj.kineticScrollingClickHelpers.click && obj.kineticScrollingClickHelpers.click(obj);
+                    obj.kineticScrollingClickHelpers.inputIsDown = false;
+                } else if (obj.kineticScrollingClickHelpers.downTimer && !this.thresholdReached) {
+                    //It was a perfect tap, so we trigger all the events at once
+                    clearTimeout(obj.kineticScrollingClickHelpers.downTimer);
+                    obj.kineticScrollingClickHelpers.down && obj.kineticScrollingClickHelpers.down(obj);
+                    obj.kineticScrollingClickHelpers.up && obj.kineticScrollingClickHelpers.up(obj);
+                    obj.kineticScrollingClickHelpers.click && obj.kineticScrollingClickHelpers.click(obj);
+                }
+            }.bind(this));
+
+        } else {
+            for (var eventName in events) {
+                if (events.hasOwnProperty(eventName)) {
+                    obj.kineticScrollingClickHelpers[eventName] = events[eventName];
+                }
+            }
+        }
+    };
+
+    Phaser.Plugin.KineticScrolling.prototype.cancelClickEventHelpers = function () {
+        this.clickHelperActiveObjects.forEach(function (obj) {
+            var inputIsDown = obj.kineticScrollingClickHelpers.inputIsDown;
+            obj.kineticScrollingClickHelpers.inputIsDown = false;
+            if (inputIsDown && obj.kineticScrollingClickHelpers.up) {
+                obj.kineticScrollingClickHelpers.up();
+            }
+        });
     };
 
     /**
@@ -158,6 +312,9 @@
     */
     Phaser.Plugin.KineticScrolling.prototype.endMove = function () {
 
+        clearTimeout(this.clearMovementTimer);
+
+        this.pointerId = null;
         this.pressedDown = false;
         this.autoScrollX = false;
         this.autoScrollY = false;
@@ -166,7 +323,7 @@
 
         this.now = Date.now();
 
-        if(this.game.input.activePointer.withinGame){
+        if (this.game.input.activePointer.withinGame) {
             if (this.velocityX > 10 || this.velocityX < -10) {
                 this.amplitudeX = 0.8 * this.velocityX;
                 this.targetX = Math.round(this.game.camera.x - this.amplitudeX);
@@ -182,10 +339,16 @@
         if (!this.game.input.activePointer.withinGame) {
             this.velocityWheelXAbs = Math.abs(this.velocityWheelX);
             this.velocityWheelYAbs = Math.abs(this.velocityWheelY);
-            if (this.settings.horizontalScroll && (this.velocityWheelXAbs < 0.1 || !this.game.input.activePointer.withinGame)) {
+            if (
+                this.settings.horizontalScroll
+                && (this.velocityWheelXAbs < 0.1 || !this.game.input.activePointer.withinGame)
+            ) {
                 this.autoScrollX = true;
             }
-            if (this.settings.verticalScroll && (this.velocityWheelYAbs < 0.1 || !this.game.input.activePointer.withinGame)) {
+            if (
+                this.settings.verticalScroll
+                && (this.velocityWheelYAbs < 0.1 || !this.game.input.activePointer.withinGame)
+            ) {
                 this.autoScrollY = true;
             }
         }
@@ -201,10 +364,11 @@
         this.velocityWheelXAbs = Math.abs(this.velocityWheelX);
         this.velocityWheelYAbs = Math.abs(this.velocityWheelY);
 
+        var delta = 0;
         if (this.autoScrollX && this.amplitudeX != 0) {
 
-            var delta = -this.amplitudeX * Math.exp(-this.elapsed / this.settings.timeConstantScroll);
-            if (delta > 0.5 || delta < -0.5) {
+            delta = -this.amplitudeX * Math.exp(-this.elapsed / this.settings.timeConstantScroll);
+            if (this.canCameraMoveX() && (delta > 0.5 || delta < -0.5)) {
                 this.game.camera.x = this.targetX - delta;
             }
             else {
@@ -215,8 +379,8 @@
 
         if (this.autoScrollY && this.amplitudeY != 0) {
 
-            var delta = -this.amplitudeY * Math.exp(-this.elapsed / this.settings.timeConstantScroll);
-            if (delta > 0.5 || delta < -0.5) {
+            delta = -this.amplitudeY * Math.exp(-this.elapsed / this.settings.timeConstantScroll);
+            if (this.canCameraMoveY() && (delta > 0.5 || delta < -0.5)) {
                 this.game.camera.y = this.targetY - delta;
             }
             else {
@@ -225,11 +389,11 @@
             }
         }
 
-        if(!this.autoScrollX && !this.autoScrollY){
+        if (!this.autoScrollX && !this.autoScrollY) {
             this.dragging = false;
         }
 
-        if (this.settings.horizontalWheel  && this.velocityWheelXAbs > 0.1) {
+        if (this.settings.horizontalWheel && this.velocityWheelXAbs > 0.1) {
             this.dragging = true;
             this.amplitudeX = 0;
             this.autoScrollX = false;
@@ -265,12 +429,30 @@
             this.autoScrollX = false;
 
             this.velocityWheelX += delta;
+
+            if (typeof this.settings.onUpdate === 'function') {
+                var deltaX = 0;
+                if (this.game.camera.x > 0 && this.game.camera.x + this.game.camera.width < this.game.camera.bounds.width) {
+                    deltaX = delta;
+                }
+
+                this.settings.onUpdate(deltaX, 0);
+            }
         }
 
         if (this.settings.verticalWheel) {
             this.autoScrollY = false;
 
             this.velocityWheelY += delta;
+
+            if (typeof this.settings.onUpdate === 'function') {
+                var deltaY = 0;
+                if (this.game.camera.y > 0 && this.game.camera.y + this.game.camera.height < this.game.camera.bounds.height) {
+                    deltaY = delta;
+                }
+
+                this.settings.onUpdate(0, deltaY);
+            }
         }
 
     };
@@ -295,6 +477,8 @@
 
         this.game.input.mouse.mouseWheelCallback = null;
 
+        this.clickHelperActiveObjects.length = 0;
+
     };
 
-} (Phaser));
+}(Phaser));

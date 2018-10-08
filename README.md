@@ -2,11 +2,11 @@
 
 ![Kinetic Scrolling Plugin](https://raw.githubusercontent.com/jdnichollsc/Phaser-Kinetic-Scrolling-Plugin/gh-pages/img/plugin.png)
 
-I wanted to simulate horizontal and vertical scrolling in my games to display levels or a section of authors using only the canvas element in HTML5, but I couldn't find a good solution... so I decided to create my own plugin to Phaser Framework :D
+The vertical and horizontal scrolling is a very useful feature in the games for example to display a section of levels and with this plugin you can simulate the scrolling within a **canvas** element of **HTML5**... so check this awesome plugin for **Phaser Framework**!
 
 > Kinetic scrolling based on http://ariya.ofilabs.com/2013/11/javascript-kinetic-scrolling-part-2.html
 
-##Download the Plugin
+## Download the Plugin
 
 [![NPM](https://nodei.co/npm/phaser-kinetic-scrolling-plugin.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/phaser-kinetic-scrolling-plugin/)
 
@@ -18,13 +18,13 @@ Install via [npm](https://www.npmjs.com)
 
 `npm i phaser-kinetic-scrolling-plugin --save`
 
-##Load the Plugin
+## Load the Plugin
 
 ```javascript
 this.game.kineticScrolling = this.game.plugins.add(Phaser.Plugin.KineticScrolling);
 ```
 
-##Change Default Settings of the Plugin - *_It isn't necessary, default is horizontal_*
+## Change Default Settings of the Plugin - *_It isn't necessary, default is horizontal_*
 
 ```javascript
 this.game.kineticScrolling.configure({
@@ -34,23 +34,24 @@ this.game.kineticScrolling.configure({
     verticalScroll: false,
     horizontalWheel: true,
     verticalWheel: false,
-    deltaWheel: 40
+    deltaWheel: 40,
+    onUpdate: null //A function to get the delta values if it's required (deltaX, deltaY)
 });
 ```
 
-##Start the Plugin
+## Start the Plugin
 
 ```javascript
 this.game.kineticScrolling.start();
 ```
 
-##Stop the Plugin
+## Stop the Plugin
 
 ```javascript
 this.game.kineticScrolling.stop();
 ```
 
-##Full Example
+## Full Example
 
 ```javascript
 var game = new Phaser.Game(1024, 768, Phaser.AUTO, '', {
@@ -94,13 +95,31 @@ var game = new Phaser.Game(1024, 768, Phaser.AUTO, '', {
 ```
 
 ## Examples
-The repository has some examples of the plugin:
+The repository has some examples of the plugin, to run the examples created by the community execute the command `gulp examples` from the terminal:
 - Horizontal scrolling
 - Horizontal scrolling with scrollbar
 - Horizontal scrolling and pressing events
 - Horizontal and Vertical scrolling (Mouse wheel too)
+- onUpdate callback to track delta
 
-# Happy scrolling
+## Collaborators
+[<img alt="daniel-mf" src="https://avatars1.githubusercontent.com/u/4193707?s=117&v=4" width="117">](https://github.com/daniel-mf) |
+[<img alt="VitaZheltyakov" src="https://avatars3.githubusercontent.com/u/5693437?v=3&s=117" width="117">](https://github.com/VitaZheltyakov) |
+[<img alt="iamchristopher" src="https://avatars2.githubusercontent.com/u/5909516?v=3&s=117" width="117">](https://github.com/iamchristopher) |
+[<img alt="daaaabeen" src="https://avatars0.githubusercontent.com/u/3760804?s=117&v=3" width="117">](https://github.com/daaaabeen) |
+[<img alt="jdnichollsc" src="https://avatars3.githubusercontent.com/u/2154886?v=3&s=117" width="117">](https://github.com/jdnichollsc) |
+:---: |:---: |:---: |:---: |:---: |
+[Daniel](mailto:echo.dmf@gmail.com) | [Vitaliy](mailto:vita-zhelt@yandex.ru) | [Chris Wright](https://twitter.com/jorbascrumps) | [Daaaabeen](mailto:dianbin.lee@gmail.com) | [Nicholls](mailto:jdnichollsc@hotmail.com) |
+
+## Other Projects
+- **[IonPhaser](http://market.ionic.io/plugins/ionphaser)**
+- **[Rotate Sprite Extension](https://github.com/jdnichollsc/Phaser-Rotate-Sprite-Extension)**
+
+## Supporting
+I believe in Unicorns 🦄
+Support [me](http://www.paypal.me/jdnichollsc/2), if you do too.
+
+## Happy scrolling
 Made with <3
 
 <img width="150px" src="http://phaser.azurewebsites.net/assets/nicholls.png" align="right">
