@@ -12,16 +12,16 @@ var paths = {
 gulp.task('default', ['dist', 'examples', 'watch']);
 
 gulp.task('dist', function() {
-    return gulp.src(paths.source)
-        .pipe(concat("phaser-kinetic-scrolling-plugin.js"))
-        .pipe(gulp.dest("./dist/"))
-        .pipe(gulp.dest("./examples/js/"))
-        .pipe(rename({
-            extname: ".min.js"
-        }))
-        .pipe(uglify())
-        .pipe(gulp.dest("./dist/"))
-        .pipe(connect.reload());
+  return gulp.src(paths.source)
+    .pipe(concat("phaser-kinetic-scrolling-plugin.js"))
+    .pipe(gulp.dest("./dist/"))
+    .pipe(gulp.dest("./examples/js/"))
+    .pipe(rename({
+      extname: ".min.js"
+    }))
+    .pipe(uglify())
+    .pipe(gulp.dest("./dist/"))
+    .pipe(connect.reload());
 });
 
 gulp.task('examples', function() {

@@ -3,7 +3,7 @@
  * @author       Juan Nicholls <jdnichollsc@hotmail.com>
  * @copyright    2018 Juan Nicholls - http://jdnichollsc.github.io/Phaser-Kinetic-Scrolling-Plugin/
  * @license      {@link http://opensource.org/licenses/MIT}
- * @version 1.2.0
+ * @version 1.2.1
  */
 
 (function (Phaser) {
@@ -464,6 +464,7 @@
     */
     Phaser.Plugin.KineticScrolling.prototype.stop = function () {
 
+        this.pressedDown = false;
         this.game.input.onDown.remove(this.beginMove, this);
 
         if (this.callbackID) {
