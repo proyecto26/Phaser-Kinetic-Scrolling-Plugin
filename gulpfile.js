@@ -1,21 +1,25 @@
-var gulp = require('gulp');
-var concat = require('gulp-concat');
-var rename = require('gulp-rename');
-var uglify = require('gulp-uglify');
-var connect = require('gulp-connect');
-var open = require('gulp-open');
+const gulp = require('gulp');
+const rename = require('gulp-rename');
+const uglify = require('gulp-uglify');
+const connect = require('gulp-connect');
+const open = require('gulp-open');
+const cleanDest = require('gulp-clean-dest');
+const ts = require('gulp-typescript');
+const tsProject = ts.createProject('tsconfig.json');
 
-var paths = {
-  source: ['./src/*.js']
-};
+gulp.task('default', ['build', 'examples', 'watch']);
 
-gulp.task('default', ['dist', 'examples', 'watch']);
+gulp.task('build', ['compile', 'minify']);
 
-gulp.task('dist', function() {
-  return gulp.src(paths.source)
-    .pipe(concat("phaser-kinetic-scrolling-plugin.js"))
-    .pipe(gulp.dest("./dist/"))
-    .pipe(gulp.dest("./examples/js/"))
+gulp.task('compile', function () {
+  return tsProject.src().pipe(tsProject())
+    .pipe(cleanDest('dist'))
+    .pipe(gulp.dest('dist'))
+    .pipe(gulp.dest('./examples/dist/'))
+});
+
+gulp.task('minify', ['compile'], function () {
+  return gulp.src(['dist/*.js', '!dist/*.min.js'])
     .pipe(rename({
       extname: ".min.js"
     }))
@@ -37,5 +41,5 @@ gulp.task('examples', function() {
 });
 
 gulp.task('watch', function() {
-  gulp.watch(paths.source, ['dist']);
+  gulp.watch(['./src/*.ts'], ['build']);
 });

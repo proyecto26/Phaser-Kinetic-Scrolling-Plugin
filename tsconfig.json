@@ -1,0 +1,13 @@
+{
+    "files": [
+        "src/KineticScrollingPlugin.ts"
+    ],
+    "compilerOptions": {
+        "outDir": "./dist",
+        "target": "es5",
+        "module": "commonjs",
+        "declaration": true,
+        "noImplicitAny": true,
+        "esModuleInterop": true
+    }
+}
