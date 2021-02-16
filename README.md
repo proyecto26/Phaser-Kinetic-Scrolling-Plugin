@@ -1,3 +1,27 @@
+<p>
+  <a href="./LICENSE">
+    <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT license" />
+  </a>
+  <a href="https://npmjs.org/package/phaser-kinetic-scrolling-plugin">
+    <img src="http://img.shields.io/npm/v/phaser-kinetic-scrolling-plugin.svg" alt="Current npm package version" />
+  </a>
+  <a href="https://github.com/proyecto26/Phaser-Kinetic-Scrolling-Plugin/graphs/commit-activity">
+    <img src="https://img.shields.io/badge/Maintained%3F-yes-brightgreen.svg" alt="Maintenance" />
+  </a>
+  <a href="https://opencollective.com/proyecto26" alt="Financial Contributors on Open Collective">
+    <img src="https://opencollective.com/proyecto26/all/badge.svg?label=financial+contributors" />
+  </a>
+  <a href="https://npmjs.org/package/phaser-kinetic-scrolling-plugin">
+    <img src="http://img.shields.io/npm/dm/phaser-kinetic-scrolling-plugin.svg" alt="Downloads" />
+  </a>
+  <a href="https://npmjs.org/package/phaser-kinetic-scrolling-plugin">
+    <img src="http://img.shields.io/npm/dt/phaser-kinetic-scrolling-plugin.svg?label=total%20downloads" alt="Total downloads" />
+  </a>
+  <a href="https://twitter.com/intent/follow?screen_name=jdnichollsc">
+    <img src="https://img.shields.io/twitter/follow/jdnichollsc.svg?label=Follow%20@jdnichollsc" alt="Follow @jdnichollsc" />
+  </a>
+</p>
+
 # Kinetic Scrolling Plugin for Phaser Framework
 
 ![Kinetic Scrolling Plugin](https://raw.githubusercontent.com/jdnichollsc/Phaser-Kinetic-Scrolling-Plugin/main/img/plugin.png)
